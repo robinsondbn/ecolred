@@ -1,0 +1,21 @@
+{
+  "name": "automatizacion",
+  "version": "1.0.0",
+  "description": "lector y controlador de parametros de mediciones externas",
+  "main": "Gulp.js",
+  "dependencies": {
+    "@uirouter/angularjs": "^1.0.7"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.1",
+    "gulp-concat": "^2.6.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "monte07jul@hotmail.com/ieisrobinson@gmail.com",
+  "license": "UNLICENSED"
+}

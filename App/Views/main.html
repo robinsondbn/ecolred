@@ -1,0 +1,122 @@
+<div class="row">
+   <div class="col-md-2">
+       <nav>
+           <ul class="nav nav-pills nav-stacked">
+                <li role="presentation">
+                   <a type="button" class="btn btn-primary btn-menu" data-toggle="modal" data-target="#User">
+                       {{name}}
+                   </a>
+                </li>
+                <li role=presentation>
+                    <a ng-click="showParameter = 1"><translate>Temperatura ambiente</translate></a>
+                </li>
+                <li role="presentation">
+                    <a ng-click="showParameter = 2"><translate>Humedad relativa</translate></a>
+                </li>
+                <li role="presentation">
+                    <a ng-click="showParameter = 3"><translate>Ph</translate></a>
+                </li>
+                <li role="presentation">
+                    <a ng-click="showParameter = 4"><translate>Electroconductividad</translate></a>
+                </li>
+                <li role="presentation">
+                    <a ng-click="showParameter = 5"><translate>Temperatura del agua</translate></a>
+                </li>
+                <li role="presentation">
+                    <a ng-click="showParameter = 6"><translate>Oxigeno en el agua</translate></a>
+                </li>
+                <li role="presentation">
+                    <a ng-click="logout()"><translate>Salida</translate></a>
+                </li>
+            </ul> 
+       </nav>
+   </div>
+   <div class="col-md-10">
+        <div ng-show="showParameter == 0">
+             <button class="btn btn-success" ng-click="ramdom()">
+                 Ramdomize data
+             </button>
+        </div>
+      <div ng-show="showParameter == 1">
+          <parametros name="Temperatura ambiente"></parametros>
+      </div>
+      <div ng-show="showParameter == 2">
+          <parametros name="Humedad relativa"></parametros>
+      </div>
+      <div ng-show="showParameter == 3">
+          <parametros name="ph"></parametros>
+      </div>
+      <div ng-show="showParameter == 4">
+          <parametros name="Electroconductividad"></parametros>
+      </div>
+      <div ng-show="showParameter == 5">
+          <parametros name="Temperatura del agua"></parametros>
+      </div>
+      <div ng-show="showParameter == 6">
+          <parametros name="Oxigeno en el agua"></parametros>
+      </div>
+   </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="chart-container">
+            <canvas id="BarChart" style="width: 100%"></canvas>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="chart-container">
+            <canvas id="LineChart"></canvas>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="chart-container">
+            <canvas id="AreaChart"></canvas>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="chart-container">
+            <canvas id="PieChart"></canvas>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="chart-container">
+            <canvas id="PolarChart"></canvas>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="chart-container">
+            <canvas id="DonaChart"></canvas>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="User" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalLabel">Datos del usuario</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <label for="name" class="control-label">Nombre</label>
+                    <input type="text" class="form-control" id="name" ng-model="user.name" placeholder="Nombre" required>
+                    <label for="email" class="control-label">Correo</label>
+                    <input type="email" class="form-control" id="email" ng-model="user.email" placeholder="example@example.com" required>
+                    <label for="password" class="control-label">Contraseña</label>
+                    <input type="password" class="form-control" id="password" ng-model="user.password" placeholder="********">
+                    <label for="confirmpassword" class="control-label">Confirmar contraseña</label>
+                    <input type="password" class="form-control" id="confimrpassword" ng-model="user.confirmpassword" placeholder="*******">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="modifyUser()">Guardar Cambios</button>
+            </div>
+        </div>
+    </div>
+</div>

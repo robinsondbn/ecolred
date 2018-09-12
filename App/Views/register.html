@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col-md-12">
+        <form class="form-horizontal center-block" style="width: 50%; padding: 35px">
+            <h2 class="text-center">Formulario registro</h2>
+            <!--<div class="form-group">
+                <label for="inputName" class="control-label"><translate>Nombre</translate></label>
+                <input type="text" class="form-control" id="inputName" placeholder="Nombre" ng-model="user.name">
+            </div>-->
+            <div class="form-group">
+                <label for="inputEmail" class="control-label"><translate>Correo</translate></label>
+                <input type="email" class="form-control" id="inputEmail" placeholder="example@example.com" ng-model="user.email">
+            </div>
+            <div class="form-group">
+                <label for="inputPassword" class="control-label"><trasnlate>Contraseña</trasnlate></label>
+                <input type="password" class="form-control" id="inputPassword" ng-model="user.password" placeholder="***********">
+            </div>
+            <div class="form-group">
+                <label for="inputConfirmPassword" class="control-label"><trasnlate>Confirmar Contraseña</trasnlate></label>
+                <input type="password" class="form-control" id="inputConfirmPassword" ng-model="user.confirmpassword" placeholder="***********">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-success btn-block center-block " style="width: 50%;" ng-click="register()">Registrar</button>
+            </div>
+            <div>
+                <a class="link_create" ui-sref="login">volver</a>
+            </div>
+        </form>
+    </div>
+</div>

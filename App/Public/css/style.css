@@ -1,0 +1,30 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.body {
+    height: 100vh;
+    display: flex;
+    background-color: #DEDEDE;
+}
+
+.form-horizontal {
+    margin-top: 12px;
+    background-color: #EFEFEF;
+    border-top: solid 25px #00695C;
+    box-sizing: 3rem 0;
+    box-shadow: 0 0 3rem #8a8c8c;
+}
+
+.link_create {
+    color: #00BFA5;
+    text-decoration: none; 
+}
+
+.link_create:hover {
+    color: #1DE9B6;    
+}
+.btn-menu:hover {
+    background-color:#01579B;
+}
