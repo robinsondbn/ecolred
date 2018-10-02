@@ -3,6 +3,13 @@ var app = angular.module('autoautomatizacion', ['ui.router']);
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     
     $stateProvider.state({
+        name : 'index',
+        url : '/index',
+        controller : 'IndexController',
+        //template : templateString
+        templateUrl : 'Views/index.html'
+   })
+    .state({
         name : 'login',
         url : '/login',
         controller : 'LoginController',
