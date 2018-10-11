@@ -24,9 +24,9 @@
 <section>
   <header>
     <div class="container" style="text-align: center"> 
-      <img src="Public/img/Logo_Portada_Index.png" alt="" style="margin: auto; margin-top: 80px; display: block;width: 70%;">
-      <span style="font-size: 49px; color: #0094CB;  font-weight: lighter; margin-bottom: 20px;">Bienvenidos a  <br/>la plataforma</span>  
-      <span style="color: #54B202 ; font-size: 49px; font-weight: 600;">Ecolred</span>
+      <img src="Public/img/Logo_Portada_Index.png" alt="" class="img-index" >
+      <span class="text-index">Bienvenidos a  <br/>la plataforma</span>  
+      <span class="span-index">Ecolred</span>
       <p><a class="button-index" ui-sref="register">CREAR CUENTA</a></p>
     </div>
   </header>
@@ -34,36 +34,36 @@
 </section>
 
 
-<div class="modal fade" id="loginOfThis" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document" style="  width: 460px; margin: 180px auto;">
-    <div class="modal-content" style="border: 3px solid #54B202; height: 560px; width: 460px;">
+<div class="modal" id="loginOfThis" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="border: 3px solid #54B202; height: 560px; width: 100%;">
       <div class="modal-body">
       	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       	<div class="row" style="text-align: center;">
-      		<img src="" alt="" style="display: block;height: 170px; width: 137px; margin: auto; margin-top: 50px;">
-						<div class="col-md-12">
-							<div class="form-group">
-							    <label for="inputEmail" class="control-label" style="font-size: 20px; color:#0094CB"><translate>Correo</translate></label>
-                                <input type="email" class="form-control" id="inputEmail" placeholder="example@example.com" ng-model="user.email" required>
-							</div>
-						</div>
-						<div class="col-md-12">
-							<div class="form-group">
-                                <label for="inputPassword" class="control-label" style="font-size:20px;color:#0094CB"><trasnlate>Contraseña</trasnlate></label>
-                                <input type="password" class="form-control" id="inputPassword" ng-model="user.password" placeholder="***********" required>
-							</div>
-							<a class="" href="" style="font-size: 14px; color: #0094CB;">¿Olvidaste tu contraseña?</a>
-						</div>
-						<div class="col-md-12">
-							<div class="form-group">
-							    <button class="btn btn-success btn-login" ng-click="login()">Entrar</button>
-							</div>
-						</div>
-						<div class="col-md-12">
-							<div class="form-group">
-								No tienes una cuenta? <a class="link_create" ui-sref="register">Solicita una cuenta</a>
-							</div>
-						</div>
+      		<img src="Public/img/EcolRed_De_Inicio.png" alt="" style="display: block;height: 170px; width: 137px; margin: auto; margin-top: 50px;">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="inputEmail" class="control-label" style="font-size: 20px; color:#0094CB"><translate>Correo</translate></label>
+                    <input type="email" class="form-control" id="inputEmail" placeholder="example@example.com" ng-model="user.email" required>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="inputPassword" class="control-label" style="font-size:20px;color:#0094CB"><trasnlate>Contraseña</trasnlate></label>
+                    <input type="password" class="form-control" id="inputPassword" ng-model="user.password" placeholder="***********" required>
+                </div>
+                <a class="" href="" style="font-size: 14px; color: #0094CB;">¿Olvidaste tu contraseña?</a>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <button class="btn btn-success btn-login" ng-click="login()">Entrar</button>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    No tienes una cuenta? <a class="link_create" data-dismiss="modal" onclick="javascript:window.location='index.html#!/register'" >Solicita una cuenta</a>
+                </div>
+            </div>
       	</div>
       </div>
     </div>
