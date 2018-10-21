@@ -3,7 +3,12 @@
    background-color: #fff; 
    border-color: #fff; 
 }
-
+.form-control:focus{
+  border-color:unset;
+  outline:0;
+  -webkit-box-shadow:none;
+  box-shadow:none;
+}
 @media (min-width: 1300px){
   .container {
       width: 1270px;
