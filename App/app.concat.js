@@ -5,6 +5,12 @@ var app = angular.module('autoautomatizacion', ['ui.router']);
 app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
 
     $stateProvider.state({
+        name: 'index',
+        url: '/index',
+        controller: 'IndexController',
+        //template : templateString
+        templateUrl: 'Views/index.html'
+    }).state({
         name: 'login',
         url: '/login',
         controller: 'LoginController',
@@ -27,16 +33,22 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $htt
         $state.go('main');
     });
 });
-app.controller('LoginController', ['$scope', 'User', function ($scope, User) {
+app.controller('LoginController', ['$scope', '$state', 'User', function ($scope, $state, User) {
 
     $scope.user = User;
 
     $scope.login = function () {
+        $('#loginOfThis').modal('hide');
         $scope.user.login();
         $scope.user.init({
             email: null,
             password: null
         });
+    };
+
+    $scope.redirect = function () {
+        $('#loginOfThis').modal('hide');
+        $state.go('register');
     };
 }]);
 app.controller('MainController', ['$scope', '$state', '$timeout', 'User', function ($scope, $state, $timeout, User) {
@@ -64,7 +76,7 @@ app.controller('MainController', ['$scope', '$state', '$timeout', 'User', functi
             if ($scope.user.password === $scope.user.confirmpassword) {
                 $scope.user.modify();
             } else {
-                swal('Las contraseñas no coinciden', '', 'error');
+                swal('Las contraseñas no coinciden', 'error');
             }
         } else {
             $scope.user.modify();
@@ -222,7 +234,22 @@ app.controller('RegisterController', ['$scope', 'User', function ($scope, User) 
         var password = $scope.user.password;
         var confirmPassword = $scope.user.confirmpassword;
         if (password === confirmPassword) {
-            $scope.user.create();
+            swal({
+                title: "Formulario completo",
+                text: "¿Esta seguro que desea enviar la informacion?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true
+            }).then(function (willDelete) {
+                if (willDelete) {
+                    swal("La informacion a sido enviada correctamente", {
+                        icon: "success"
+                    });
+                    $scope.user.create();
+                } else {
+                    swal("De acuerdo, la informacion nofue enviada");
+                }
+            });
         } else {
             swal('Las contraseñas no coinciden', 'Lo campos de las contraseñas deben de ser iguales', 'error');
         }
