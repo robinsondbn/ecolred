@@ -3,16 +3,17 @@ app.controller('LoginController',['$scope', '$state', 'User', function($scope, $
     $scope.user = User;
     
     $scope.login = () =>{
-        
-        $scope.user.login();
-        $scope.user.init({
-            email : null,
-            password : null
-        });
+      $('#loginOfThis').modal('hide');
+      $scope.user.login();
+      $scope.user.init({
+          email : null,
+          password : null
+      });
     }
+    
     $scope.redirect = () =>{
         $('#loginOfThis').modal('hide');
-//        $state.go('registers');
+        $state.go('register');
     }
     
 }]);
