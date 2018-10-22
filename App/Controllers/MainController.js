@@ -1,24 +1,24 @@
 app.controller('MainController', ['$scope','$state','$timeout','User', function($scope,$state,$timeout,User){
     $scope.showParameter = 0;
     $scope.user = User;
+    $scope.name = ' ';
     
+    function getUser(){
+        /*firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                $scope.user.init({
+                    name :  user.displayName,
+                    email : user.email
+                });
+                if(user.displayName){
+                    $scope.name = user.displayName;    
+                }else{
+                    $scope.name = user.email;
+                }
+            } else { console.log('error, no hay usuario');}
+        }); */       
+    }
     
-    
-    firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-            $scope.user.init({
-                name :  user.displayName,
-                email : user.email
-            });
-            if(user.displayName){
-                $scope.name = user.displayName;    
-            }else{
-                $scope.name = user.email;
-            }
-        } else {
-            $state.go('login');
-        }
-    });
     
     $scope.modifyUser = () => {
         if($scope.user.password || $scope.user.confirmpassword){
@@ -183,6 +183,9 @@ app.controller('MainController', ['$scope','$state','$timeout','User', function(
     }
     
     function pruebaFunction(){
+        //llamada de función para optener el usuario
+        getUser();
+        
         $scope.barChart = new Chart('BarChart', {
             type : 'bar',
             data: barData,

@@ -7,25 +7,30 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $htt
     $stateProvider.state({
         name: 'index',
         url: '/index',
-        controller: 'IndexController',
+        controller: 'LoginController',
         //template : templateString
         templateUrl: 'Views/index.html'
     }).state({
-        name: 'login',
+        name: 'index.login',
         url: '/login',
         controller: 'LoginController',
-        //template : templateString
-        templateUrl: 'Views/login.html'
+        templateUrl: 'Views/login/cover.html'
     }).state({
-        name: 'register',
+        name: 'index.register',
         url: '/register',
         controller: 'RegisterController',
-        templateUrl: 'Views/register.html'
+        templateUrl: 'Views/login/register.html'
     }).state({
         name: 'main',
         url: '/main',
+        middleware: ['AuthMiddleware'],
         controller: 'MainController',
         templateUrl: 'Views/main.html'
+    }).state({
+        name: 'main.parametros',
+        url: '/ph',
+        controller: 'ParametersController',
+        templateUrl: 'Views/Parameters/layout.html'
     });
 
     $urlRouterProvider.otherwise(function ($injector) {
@@ -33,6 +38,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $htt
         $state.go('main');
     });
 });
+
 app.controller('LoginController', ['$scope', '$state', 'User', function ($scope, $state, User) {
 
     $scope.user = User;
@@ -54,22 +60,23 @@ app.controller('LoginController', ['$scope', '$state', 'User', function ($scope,
 app.controller('MainController', ['$scope', '$state', '$timeout', 'User', function ($scope, $state, $timeout, User) {
     $scope.showParameter = 0;
     $scope.user = User;
+    $scope.name = ' ';
 
-    firebase.auth().onAuthStateChanged(function (user) {
-        if (user) {
-            $scope.user.init({
-                name: user.displayName,
-                email: user.email
-            });
-            if (user.displayName) {
-                $scope.name = user.displayName;
-            } else {
-                $scope.name = user.email;
-            }
-        } else {
-            $state.go('login');
-        }
-    });
+    function getUser() {
+        /*firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                $scope.user.init({
+                    name :  user.displayName,
+                    email : user.email
+                });
+                if(user.displayName){
+                    $scope.name = user.displayName;    
+                }else{
+                    $scope.name = user.email;
+                }
+            } else { console.log('error, no hay usuario');}
+        }); */
+    }
 
     $scope.modifyUser = function () {
         if ($scope.user.password || $scope.user.confirmpassword) {
@@ -164,6 +171,9 @@ app.controller('MainController', ['$scope', '$state', '$timeout', 'User', functi
     };
 
     function pruebaFunction() {
+        //llamada de función para optener el usuario
+        getUser();
+
         $scope.barChart = new Chart('BarChart', {
             type: 'bar',
             data: barData,
@@ -226,6 +236,7 @@ app.controller('MainController', ['$scope', '$state', '$timeout', 'User', functi
 
     $timeout(pruebaFunction(), 1000);
 }]);
+app.controller('ParametersController', ['$scope', '$state', '$timeout', function ($scope, $state, $timeout) {}]);
 app.controller('RegisterController', ['$scope', 'User', function ($scope, User) {
 
     $scope.user = User;
@@ -265,6 +276,24 @@ app.directive('parametros', ['$state', function ($state) {
         templateUrl: 'Templates/Parameters.html',
         //link : link,
         controller: ['$scope', function ($scope) {}]
+    };
+}]);
+'use strict';
+
+app.factory('AuthMiddleware', ['$state', function ($state) {
+
+    var authMiddleware = this;
+
+    authMiddleware.run = function (event) {
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (!user) {
+                $state.go('index.login');
+            }
+        });
+    };
+
+    return {
+        run: authMiddleware.run
     };
 }]);
 app.factory('User', ['UsersServices', '$state', function (UsersServices, $state) {
@@ -397,7 +426,7 @@ app.service('UsersServices', ['$state', function ($state) {
 
     this.logout = function () {
         firebase.auth().signOut().then(function () {
-            $state.go('login');
+            $state.go('index.login');
         }).catch(function (err) {
             var errorMesagge = err;
             swal('error a tratar de salir', errorMesagge, 'error');

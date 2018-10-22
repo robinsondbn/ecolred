@@ -37,7 +37,7 @@
                  Ramdomize data
              </button>
         </div>
-      <div ng-show="showParameter == 1">
+      <!--<div ng-show="showParameter == 1">
           <parametros name="Temperatura ambiente"></parametros>
       </div>
       <div ng-show="showParameter == 2">
@@ -54,10 +54,12 @@
       </div>
       <div ng-show="showParameter == 6">
           <parametros name="Oxigeno en el agua"></parametros>
-      </div>
+      </div>-->
    </div>
 </div>
-<div class="row">
+<ui-view></ui-view>
+
+<!--<div class="row">
     <div class="col-md-4">
         <div class="chart-container">
             <canvas id="BarChart" style="width: 100%"></canvas>
@@ -88,9 +90,7 @@
             <canvas id="DonaChart"></canvas>
         </div>
     </div>
-</div>
-
-
+</div>-->
 <!-- Modal -->
 <div class="modal fade" id="User" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">

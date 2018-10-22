@@ -5,28 +5,34 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider, $http
     $stateProvider.state({
         name : 'index',
         url : '/index',
-        controller : 'IndexController',
+        controller : 'LoginController',
         //template : templateString
         templateUrl : 'Views/index.html'
    })
     .state({
-        name : 'login',
+        name : 'index.login',
         url : '/login',
         controller : 'LoginController',
-        //template : templateString
-        templateUrl : 'Views/login.html'
-   })
+        templateUrl : 'Views/login/cover.html'
+    })
     .state({
-        name : 'register',
+        name : 'index.register',
         url : '/register',
         controller : 'RegisterController',
-        templateUrl : 'Views/register.html'
+        templateUrl : 'Views/login/register.html'
     })
     .state({
         name : 'main',
         url : '/main',
+        middleware: ['AuthMiddleware'],
         controller : 'MainController',
         templateUrl : 'Views/main.html'
+    })
+    .state({
+        name : 'main.parametros',
+        url : '/ph',
+        controller : 'ParametersController',
+        templateUrl : 'Views/Parameters/layout.html'
     });
     
     $urlRouterProvider.otherwise(function($injector) {
