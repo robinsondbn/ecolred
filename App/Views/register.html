@@ -22,32 +22,105 @@
 </nav>
 <section class="image-admission-user">
 		<div class="col-md-6" style="background-color: #ffffff;height: 100vh;padding: 0px;padding-top: 75px;">
-			<div class="col-md-10 col-md-offset-2">
-				<div class="col-md-12"><span style="font-size: 30px; color: #54B202;font-weight: 600;padding-bottom: 20px; display: block;">Crea tu cuenta</span></div>
+			<div class="col-md-8 col-md-offset-4">
+				<div class="col-md-12"><span class="create-account">Crea tu cuenta</span></div>
 				<!--espacio para colocar el formulario-->
-                        <form style="width: 50%; padding: 35px">
-                            <h2 class="text-center">Formulario registro</h2>
-                            <div class="form-group">
-                                <label for="inputName" class="control-label"><translate>Nombre</translate></label>
-                                <input type="text" class="form-control" id="inputName" placeholder="Nombre" ng-model="user.name">
+                        <form style="" ng-submit="register()">
+                          <div class="col-md-12">
+                             <div class="form-group">
+                                <label for="inputName" class="control-label label-admission"><translate>Me quiero asociar como:</translate></label>
+                                <select class="form-control input-admission" id="inputAssociationType"  ng-model="user.associationType" required>
+                                <option value="">Seleccionar</option>
+                                <option value="Productor">Productor</option>
+                               </select>
                             </div>
-                            <div class="form-group">
-                                <label for="inputEmail" class="control-label"><translate>Correo</translate></label>
-                                <input type="email" class="form-control" id="inputEmail" placeholder="example@example.com" ng-model="user.email">
+                          </div>
+                           <div class="col-md-6">
+                             <div class="form-group">
+                                <label for="inputName" class="control-label label-admission"><translate>Nombres</translate></label>
+                                <input type="text" class="form-control input-admission" id="inputName" placeholder="Nombres" ng-model="user.name" required>
                             </div>
-                            <div class="form-group">
-                                <label for="inputPassword" class="control-label"><trasnlate>Contraseña</trasnlate></label>
-                                <input type="password" class="form-control" id="inputPassword" ng-model="user.password" placeholder="***********">
+                           </div>
+                           <div class="col-md-6">
+                             <div class="form-group">
+                                <label for="inputName" class="control-label label-admission"><translate>Apellidos</translate></label>
+                                <input type="text" class="form-control input-admission" id="inputLastName" placeholder="Apellidos" ng-model="user.lastName" required>
                             </div>
-                            <div class="form-group">
-                                <label for="inputConfirmPassword" class="control-label"><trasnlate>Confirmar Contraseña</trasnlate></label>
-                                <input type="password" class="form-control" id="inputConfirmPassword" ng-model="user.confirmpassword" placeholder="***********">
+                           </div>
+                           <div class="col-md-6">
+                             <div class="form-group">
+                                <label for="inputName" class="control-label label-admission"><translate>Tipo de documento</translate></label>
+                                <input type="text" class="form-control input-admission" id="inputDocumentType" placeholder="Cedula de ciudadania" ng-model="user.documentType" required>
                             </div>
-                            <div class="form-group">
-                                <button class="btn btn-success btn-block center-block " style="width: 50%;" ng-click="register()">Registrar</button>
+                           </div>
+                           <div class="col-md-6">
+                             <div class="form-group">
+                                <label for="inputName" class="control-label label-admission"><translate>Numero de documento</translate></label>
+                                <input type="text" class="form-control input-admission" id="inputDocumentNumber" placeholder="123456789" ng-model="user.documentNumber" required>
                             </div>
-                            <div>
-                                <a class="link_create" ui-sref="login">volver</a>
+                           </div>
+                           <div class="col-md-12">
+                             <div class="form-group">
+                                <label for="inputEmail" class="control-label label-admission"><translate>Correo</translate></label>
+                                <input type="email" class="form-control input-admission" id="inputEmail" placeholder="example@example.com" ng-model="user.email" required>
+                            </div>
+                           </div>
+                           <div class="col-md-6">
+                             <div class="form-group">
+                                <label for="inputPassword" class="control-label label-admission"><trasnlate>Contraseña</trasnlate></label>
+                                <input type="password" class="form-control input-admission" id="inputPassword" ng-model="user.password" placeholder="***********" required>
+                            </div>
+                           </div>
+                           <div class="col-md-6">
+                             <div class="form-group">
+                                  <label for="inputConfirmPassword" class="control-label label-admission"><trasnlate>Confirmar Contraseña</trasnlate></label>
+                                  <input type="password" class="form-control input-admission" id="inputConfirmPassword" ng-model="user.confirmpassword" placeholder="***********" required>
+                             </div>
+                           </div>
+                           <div class="col-md-12">
+                             <div class="form-group">
+                                <label for="inputName" class="control-label label-admission"><translate>Telefono</translate></label>
+                                <input type="text" class="form-control input-admission" id="inputPhoneNumber" placeholder="3002001010" ng-model="user.phoneNumber" required>
+                             </div>
+                           </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="inputName" class="control-label label-admission"><translate>Direccion</translate></label>
+                                <input type="text" class="form-control input-admission" id="inputAddress" placeholder="Carrera 8 # 18-39" ng-model="user.address" required>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="inputName" class="control-label label-admission"><translate>Municipio/Distrito</translate></label>
+                                <input type="text" class="form-control input-admission" id="inputMunicipality" placeholder="Municipio/Distrito" ng-model="user.municipality" required>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="inputName" class="control-label label-admission"><translate>Departamento</translate></label>
+                                <input type="text" class="form-control input-admission" id="inputDepartment" placeholder="Departamento" ng-model="user.department" required>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="inputName" class="control-label label-admission"><translate>Zona</translate></label>
+                                <select name="user.zone" id="inputZone" class="form-control input-admission" required>
+                                  <option value="">Seleccionar</option>
+                                  <option value="Urbano">Urbano</option>
+                                  <option value="Rural">Rural</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <input type="submit" class="btn btn-success btn-login" value="Empezar">
+                              </div>
+                            </div>
+                            
+                            <div class="col-md-12">
+                               <div class="form-group">
+                                <a class="back" ui-sref="login">volver</a>
+                              </div>
                             </div>
                         </form>
                     </div>

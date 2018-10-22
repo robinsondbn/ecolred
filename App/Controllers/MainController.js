@@ -25,7 +25,7 @@ app.controller('MainController', ['$scope','$state','$timeout','User', function(
             if($scope.user.password === $scope.user.confirmpassword){
                 $scope.user.modify();
             }else{
-               swal('Las contraseñas no coinciden','','error');
+               swal('Las contraseñas no coinciden','error');
             }           
         }else{
             $scope.user.modify();
