@@ -243,7 +243,9 @@ app.controller('MainController', ['$scope','$state','$timeout','User', function(
         $scope.donaChart.update();
     }
     
-        
+     $scope.funsions = () => {
+       
+     }
     
     $timeout(pruebaFunction(),1000);
     

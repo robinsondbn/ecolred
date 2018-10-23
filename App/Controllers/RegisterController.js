@@ -3,6 +3,7 @@ app.controller('RegisterController', ['$scope','User',function($scope,User){
     $scope.user = User;
     
     $scope.register = () => {
+      console.log($scope.user.associationType,$scope.user.name,$scope.user.lastName,$scope.user.documentType,$scope.user.documentNumber,$scope.user.email,$scope.user.phoneNumber,$scope.user.address,$scope.user.municipality,$scope.user.department);
       var password = $scope.user.password;
       var confirmPassword = $scope.user.confirmpassword;
       if(password === confirmPassword){
@@ -20,7 +21,7 @@ app.controller('RegisterController', ['$scope','User',function($scope,User){
             });
             $scope.user.create();
           } else {
-            swal("De acuerdo, la informacion nofue enviada");
+            swal("De acuerdo, la informacion no fue enviada");
           }
         });
 

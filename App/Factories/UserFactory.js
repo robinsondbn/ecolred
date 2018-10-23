@@ -20,7 +20,6 @@ app.factory('User', ['UsersServices','$state', function(UsersServices, $state){
             email : user.email,
             password : user.password
         }
-        
         UsersServices.create(newUser);
         user.reset();
         
