@@ -76,7 +76,7 @@ app.service('UsersServices',['$state', function($state){
     this.logout = () => {
         firebase.auth().signOut()
             .then(()=>{
-                $state.go('login');
+                $state.go('index.login');
             }).catch((err)=>{
                 var errorMesagge = err;
                 swal('error a tratar de salir',errorMesagge, 'error');
