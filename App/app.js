@@ -7,31 +7,31 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider, $http
         url : '/index',
         controller : 'LoginController',
         //template : templateString
-        templateUrl : 'Views/index.html'
+        templateUrl : 'App/Views/index.html'
    })
     .state({
         name : 'index.login',
         url : '/login',
         controller : 'LoginController',
-        templateUrl : 'Views/login/cover.html'
+        templateUrl : 'App/Views/login/cover.html'
     })
     .state({
         name : 'index.register',
         url : '/register',
         controller : 'RegisterController',
-        templateUrl : 'Views/login/register.html'
+        templateUrl : 'App/Views/login/register.html'
     })
     .state({
         name : 'main',
         url : '/main',
         controller : 'MainController',
-        templateUrl : 'Views/main.html'
+        templateUrl : 'App/Views/main.html'
     })
     .state({
         name : 'main.parametros',
         url : '/ph',
         controller : 'ParametersController',
-        templateUrl : 'Views/Parameters/layout.html'
+        templateUrl : 'App/Views/Parameters/layout.html'
     });
     
     

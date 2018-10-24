@@ -9,7 +9,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand unpadding" href="#" style="padding-top: 5px; padding-left: 30px;"><img src="Public/img/Loco_Cabecera_Pequeno.png" alt="Ecolgreen" class="logotipo" style="height: 56px;"></a>
+        <a class="navbar-brand unpadding" href="#" style="padding-top: 5px; padding-left: 30px;"><img src="App/Public/img/Loco_Cabecera_Pequeno.png" alt="Ecolgreen" class="logotipo" style="height: 56px;"></a>
       </div>
 
       
@@ -31,25 +31,27 @@
       <div class="modal-body">
       	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       	<div class="row" style="text-align: center;">
-      		<img src="Public/img/EcolRed_De_Inicio.png" alt="" style="display: block;height: 170px; width: 137px; margin: auto; margin-top: 50px;">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="inputEmail" class="control-label" style="font-size: 20px; color:#0094CB"><translate>Correo</translate></label>
-                    <input type="email" class="form-control" id="inputEmail" placeholder="example@example.com" ng-model="user.email" required>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="inputPassword" class="control-label" style="font-size:20px;color:#0094CB"><trasnlate>Contraseña</trasnlate></label>
-                    <input type="password" class="form-control" id="inputPassword" ng-model="user.password" placeholder="***********" required>
-                </div>
-                <a class="" href="" style="font-size: 14px; color: #0094CB;">¿Olvidaste tu contraseña?</a>
-            </div>
-            <div class="col-md-12">
-                <div class="form-group">
-                    <button class="btn btn-success btn-login" ng-click="login()">Entrar</button>
-                </div>
-            </div>
+      		<img src="App/Public/img/EcolRed_De_Inicio.png" alt="" style="display: block;height: 170px; width: 137px; margin: auto; margin-top: 50px;">
+            <form ng-submit="login()">
+              <div class="col-md-12">
+                  <div class="form-group">
+                      <label for="inputEmail" class="control-label" style="font-size: 20px; color:#0094CB"><translate>Correo</translate></label>
+                      <input type="email" class="form-control input-admission" id="inputEmailLogin" placeholder="example@example.com" ng-model="user.email" required>
+                  </div>
+              </div>
+              <div class="col-md-12">
+                  <div class="form-group">
+                      <label for="inputPassword" class="control-label" style="font-size:20px;color:#0094CB"><trasnlate>Contraseña</trasnlate></label>
+                      <input type="password" class="form-control input-admission" id="inputPasswordLogin" ng-model="user.password" placeholder="***********" required>
+                  </div>
+                  <a class="" href="" style="font-size: 14px; color: #0094CB;">¿Olvidaste tu contraseña?</a>
+              </div>
+              <div class="col-md-12">
+                  <div class="form-group">
+                      <input type="submit" class="btn btn-success btn-login" value="Entrar">
+                  </div>
+              </div>
+            </form>
             <div class="col-md-12">
                 <div class="form-group">
                     No tienes una cuenta? <a class="link_create" ng-click='redirect()'>Solicita una cuenta</a>
