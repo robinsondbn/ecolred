@@ -242,6 +242,33 @@ header {
         width: 350px; 
         margin: 40px auto;
     }
+  .create-account {
+    font-size: 25px;
+    color: #54B202;
+    font-weight: 600;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    display: block;
+  }
+  .form-control {
+    height: 26px;
+    padding: 4px 8px;
+    font-size: 12px;
+    line-height: 1.42857143;
+  }
+  .form-group {
+    margin-bottom: 5px;
+  }
+  .btn-login, .btn-login:active, .btn-login:focus, .btn-login:hover {
+    font-size: 15px;
+    font-weight: 600;
+    color: #ffffff;
+    border-radius: 5px;
+    background-color: #54B202;
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+  }
 }
 
 
