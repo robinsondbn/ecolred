@@ -2,9 +2,10 @@ app.controller('MainController', ['$scope','$state','$timeout','User', function(
     $scope.showParameter = 0;
     $scope.user = User;
     $scope.name = ' ';
+                            
     
     function getUser(){
-        /*firebase.auth().onAuthStateChanged(function(user) {
+        firebase.auth().onAuthStateChanged(function(user) { 
             if (user) {
                 $scope.user.init({
                     name :  user.displayName,
@@ -15,8 +16,10 @@ app.controller('MainController', ['$scope','$state','$timeout','User', function(
                 }else{
                     $scope.name = user.email;
                 }
-            } else { console.log('error, no hay usuario');}
-        }); */       
+            } else {
+                $state.go('index.login');
+            }
+        });    
     }
     
     

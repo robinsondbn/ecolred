@@ -73,6 +73,12 @@ app.service('UsersServices',['$state', function($state){
             });
     }
     
+    this.getUser = () => {
+        firebase.auth().onAuthStateChanged(async (user) => {
+            return await user
+        });
+    }
+    
     this.logout = () => {
         firebase.auth().signOut()
             .then(()=>{

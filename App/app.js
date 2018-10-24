@@ -24,7 +24,6 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider, $http
     .state({
         name : 'main',
         url : '/main',
-        middleware: ['AuthMiddleware'],
         controller : 'MainController',
         templateUrl : 'Views/main.html'
     })
@@ -34,6 +33,9 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider, $http
         controller : 'ParametersController',
         templateUrl : 'Views/Parameters/layout.html'
     });
+    
+    
+    $httpProvider.interceptors.push('AuthMiddleware');
     
     $urlRouterProvider.otherwise(function($injector) {
         var $state = $injector.get("$state");
