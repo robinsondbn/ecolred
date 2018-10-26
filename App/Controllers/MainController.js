@@ -39,7 +39,7 @@ app.controller('MainController', ['$scope','$state','$timeout','User', function(
         $scope.user.logout();
     }
     
-    var barData = {
+    /*var barData = {
         labels: ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
         datasets: [{
             label: 'Parámetros',
@@ -251,9 +251,9 @@ app.controller('MainController', ['$scope','$state','$timeout','User', function(
     
      $scope.funsions = () => {
        
-     }
+     }*/
     
-    $timeout(pruebaFunction(),1000);
+    //$timeout(pruebaFunction(),1000);
     
     
     

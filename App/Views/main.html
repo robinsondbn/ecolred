@@ -1,7 +1,6 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
     <div class="container-home-menu">
-      
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
           <span class="sr-only">Toggle navigation</span>
@@ -30,91 +29,84 @@
   </div>
 </nav>
  <div class="col-xs-12" style="padding-top: 70px; ">
-  <div class="row">
-     <div class="col-md-2">
-         <nav>
-             <ul class="nav nav-pills nav-stacked">
-                  <li role=presentation>
-                      <a ng-click="showParameter = 1"><translate>Temperatura ambiente</translate></a>
-                  </li>
-                  <li role="presentation">
-                      <a ng-click="showParameter = 2"><translate>Humedad relativa</translate></a>
-                  </li>
-                  <li role="presentation">
-                      <a ng-click="showParameter = 3"><translate>Ph</translate></a>
-                  </li>
-                  <li role="presentation">
-                      <a ng-click="showParameter = 4"><translate>Electroconductividad</translate></a>
-                  </li>
-                  <li role="presentation">
-                      <a ng-click="showParameter = 5"><translate>Temperatura del agua</translate></a>
-                  </li>
-                  <li role="presentation">
-                      <a ng-click="showParameter = 6"><translate>Oxigeno en el agua</translate></a>
-                  </li>
-              </ul> 
-         </nav>
-     </div>
-     <div class="col-md-10">
-          <div ng-show="showParameter == 0">
-               <button class="btn btn-success" ng-click="ramdom()">
-                   Ramdomize data
-               </button>
-          </div>
-      <!--<div ng-show="showParameter == 1">
-            <parametros name="Temperatura ambiente"></parametros>
-        </div>
-        <div ng-show="showParameter == 2">
-            <parametros name="Humedad relativa"></parametros>
-        </div>
-        <div ng-show="showParameter == 3">
-            <parametros name="ph"></parametros>
-        </div>
-        <div ng-show="showParameter == 4">
-            <parametros name="Electroconductividad"></parametros>
-        </div>
-        <div ng-show="showParameter == 5">
-            <parametros name="Temperatura del agua"></parametros>
-        </div>
-        <div ng-show="showParameter == 6">
-            <parametros name="Oxigeno en el agua"></parametros>
-      </div>-->
-   </div>
-</div>
-<ui-view></ui-view>
-
-<!--<div class="row">
-      <div class="col-md-4">
-          <div class="chart-container">
-              <canvas id="BarChart" style="width: 100%"></canvas>
-          </div>
-      </div>
-      <div class="col-md-4">
-          <div class="chart-container">
-              <canvas id="LineChart"></canvas>
-          </div>
-      </div>
-      <div class="col-md-4">
-          <div class="chart-container">
-              <canvas id="AreaChart"></canvas>
-          </div>
-      </div>
-      <div class="col-md-4">
-          <div class="chart-container">
-              <canvas id="PieChart"></canvas>
-          </div>
-      </div>
-      <div class="col-md-4">
-          <div class="chart-container">
-              <canvas id="PolarChart"></canvas>
-          </div>
-      </div>
-      <div class="col-md-4">
-          <div class="chart-container">
-              <canvas id="DonaChart"></canvas>
-          </div>
-      </div>
-</div>-->
+      <div class="row">
+         <div class="col-md-2">
+             <nav>
+                 <ul class="nav nav-pills nav-stacked">
+                      <li role=presentation>
+                          <a ui-sref="main.room_temperature"><translate>Temperatura ambiente</translate></a>
+                      </li>
+                      <li role="presentation">
+                          <a ui-sref="main.relative_humidity"><translate>Humedad relativa</translate></a>
+                      </li>
+                      <li role="presentation">
+                          <a ui-sref="main.ph"><translate>Ph</translate></a>
+                      </li>
+                      <li role="presentation">
+                          <a ui-sref="main.electroconductivity"><translate>Electroconductividad</translate></a>
+                      </li>
+                      <li role="presentation">
+                          <a ui-sref="main.water_temperature"><translate>Temperatura del agua</translate></a>
+                      </li>
+                      <li role="presentation">
+                          <a ui-sref="main.oxygen_water"><translate>Oxigeno en el agua</translate></a>
+                      </li>
+                  </ul> 
+             </nav>
+         </div>
+         <div class="col-md-10">  
+            <ui-view>
+               <div class="row">
+                  <div class="col-md-12">
+                      <img src="App/Public/img/pecera.jpg" style="width: 500px;" class="img-responsive" alt="Responsive image">
+                  </div> 
+                  <div class="col-md-12">
+                      <h2>Último hostorial</h2>
+                      <table class="table table-hover">
+                          <tr>
+                              <th COLSPAN=2>temperatura ambiente</th>
+                              <th COLSPAN=2>humedad relativa</th>
+                              <th COLSPAN=2>Ph</th>
+                              <th COLSPAN=2>Electroconductividad</th>
+                              <th COLSPAN=2>Temperatura del agua</th>
+                              <th COLSPAN=2>Oxigeno disuelto en agua</th>
+                          </tr>
+                          <tr>
+                              <tr>
+                                 <th>fecha</th>
+                                 <th>valor</th>
+                                 <th>fecha</th>
+                                 <th>valor</th>
+                                 <th>fecha</th>
+                                 <th>valor</th>
+                                 <th>fecha</th>
+                                 <th>valor</th>
+                                 <th>fecha</th>
+                                 <th>valor</th>
+                                 <th>fecha</th>
+                                 <th>valor</th>
+                              </tr>
+                              <tr>
+                                 <td>01/11/2018</td>
+                                 <td>27 C°</td>
+                                 <td>01/11/2018</td>
+                                 <td>18 %</td>
+                                 <td>01/11/2018</td>
+                                 <td>7.5</td>
+                                 <td>01/11/2018</td>
+                                 <td>2.0 mS</td>
+                                 <td>01/11/2018</td>
+                                 <td>26 C°</td>
+                                 <td>01/11/2018</td>
+                                 <td>16 %</td>
+                              </tr>
+                          </tr>
+                      </table>
+                  </div>
+               </div>                
+            </ui-view>
+       </div>
+    </div>
 </div>
   
 <!-- Modal -->
