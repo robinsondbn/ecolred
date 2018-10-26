@@ -183,77 +183,77 @@ app.controller('MainController', ['$scope','$state','$timeout','User', function(
                 }
             }]
         }
-    }
+    }*/
     
     function pruebaFunction(){
         //llamada de función para optener el usuario
         getUser();
         
-        $scope.barChart = new Chart('BarChart', {
-            type : 'bar',
-            data: barData,
-            options : chartOptions
-        });
-        $scope.lineChart = new Chart('LineChart', {
-            type : 'line',
-            data: lineData,
-            options : chartOptions
-        });
-        $scope.areaChart = new Chart('AreaChart', {
-            type : 'line',
-            data: areaData,
-            options : chartOptions
-        });
-        $scope.pieChart = new Chart('PieChart', {
-            type : 'pie',
-            data: pieData,
-            options : chartOptions
-        });
-        $scope.polarChart = new Chart('PolarChart', {
-            type : 'polarArea',
-            data: polarData,
-            options : chartOptions
-        });
-        $scope.donaChart = new Chart('DonaChart', {
-            type : 'doughnut',
-            data: donaData,
-            options : chartOptions
-        });
+//        $scope.barChart = new Chart('BarChart', {
+//            type : 'bar',
+//            data: barData,
+//            options : chartOptions
+//        });
+//        $scope.lineChart = new Chart('LineChart', {
+//            type : 'line',
+//            data: lineData,
+//            options : chartOptions
+//        });
+//        $scope.areaChart = new Chart('AreaChart', {
+//            type : 'line',
+//            data: areaData,
+//            options : chartOptions
+//        });
+//        $scope.pieChart = new Chart('PieChart', {
+//            type : 'pie',
+//            data: pieData,
+//            options : chartOptions
+//        });
+//        $scope.polarChart = new Chart('PolarChart', {
+//            type : 'polarArea',
+//            data: polarData,
+//            options : chartOptions
+//        });
+//        $scope.donaChart = new Chart('DonaChart', {
+//            type : 'doughnut',
+//            data: donaData,
+//            options : chartOptions
+//        });
     }
     
-    $scope.ramdom = () => {
-        var newData = [88,52,11,66,77,33];
-        $scope.barChart.data.datasets.forEach((dataset) => {
-            dataset.data = newData;
-        });
-        $scope.barChart.update();
-        $scope.lineChart.data.datasets.forEach((dataset) => {
-            dataset.data = newData;
-        });
-        $scope.lineChart.update();
-        $scope.areaChart.data.datasets.forEach((dataset) => {
-            dataset.data = newData;
-        });
-        $scope.areaChart.update();
-        $scope.pieChart.data.datasets.forEach((dataset) => {
-            dataset.data = newData;
-        });
-        $scope.pieChart.update();
-        $scope.polarChart.data.datasets.forEach((dataset) => {
-            dataset.data = newData;
-        });
-        $scope.polarChart.update();
-        $scope.donaChart.data.datasets.forEach((dataset) => {
-            dataset.data = newData;
-        });
-        $scope.donaChart.update();
-    }
+//    $scope.ramdom = () => {
+//        var newData = [88,52,11,66,77,33];
+//        $scope.barChart.data.datasets.forEach((dataset) => {
+//            dataset.data = newData;
+//        });
+//        $scope.barChart.update();
+//        $scope.lineChart.data.datasets.forEach((dataset) => {
+//            dataset.data = newData;
+//        });
+//        $scope.lineChart.update();
+//        $scope.areaChart.data.datasets.forEach((dataset) => {
+//            dataset.data = newData;
+//        });
+//        $scope.areaChart.update();
+//        $scope.pieChart.data.datasets.forEach((dataset) => {
+//            dataset.data = newData;
+//        });
+//        $scope.pieChart.update();
+//        $scope.polarChart.data.datasets.forEach((dataset) => {
+//            dataset.data = newData;
+//        });
+//        $scope.polarChart.update();
+//        $scope.donaChart.data.datasets.forEach((dataset) => {
+//            dataset.data = newData;
+//        });
+//        $scope.donaChart.update();
+//    }
     
      $scope.funsions = () => {
        
-     }*/
+     }
     
-    //$timeout(pruebaFunction(),1000);
+    $timeout(pruebaFunction(),1000);
     
     
     
