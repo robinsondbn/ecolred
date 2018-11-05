@@ -64,7 +64,6 @@ app.service('UsersServices',['$state', function($state){
         firebase.auth().signInWithEmailAndPassword(User.email, User.password)
             .then(()=>{
                 $state.go('main');
-                swal('Bienvenido');
             }).catch(function(error) {
               // Handle Errors here.
               var errorCode = error.code;

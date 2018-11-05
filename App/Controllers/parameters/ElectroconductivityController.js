@@ -1,5 +1,15 @@
 app.controller('ElectroconductivityController',['$scope', '$state','$timeout', function($scope, $state, $timeout){
     
+  
+     $('#datepickerElectroconductivity').datepicker({
+       format: "dd/mm/yyyy",
+       maxViewMode: 2,
+       language: "es",
+       autoclose: true
+      }).on('changeDate', function (selected) {
+        console.log(selected.date);
+      });
+  
     var lineData = {
         labels: ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
         datasets: [{

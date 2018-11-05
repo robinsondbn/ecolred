@@ -1,5 +1,44 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand unpadding" href="#" style="padding-top: 5px; padding-left: 30px;"><img src="App/Public/img/Loco_Cabecera_Pequeno.png" alt="Ecolgreen" class="logotipo" style="height: 56px;"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+      </ul>
+      
+      <ul class="nav navbar-nav navbar-right">
+        <li><i class="fa fa-bell bell-user pull-right" aria-hidden="true"><span>1</span></i></li>
+        <li class="dropdown">
+          <img src="App/Public/img/Foto_De_Perfil.png" alt="{{name}}" style="height: 50px;border-radius: 50%;margin-top: 8px;cursor: pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-click="funsions">
+          <ul class="dropdown-menu dropdown-menu-right">
+            <li><a style="color: #000;font-weight: 600;" class="container-nick" >{{name}} <br><span style="font-weight: 100; font-size: 10px;">{{user.email}}</span></a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="" data-toggle="modal" data-target="#User">Perfil</a></li>
+            <li><a href="" >Guias</a></li>
+            <li><a href="" >Tutoriales</a></li>
+            <li><a href="" ng-click="logout()">Salir</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+ 
+
+ 
+<!--
+ <nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
     <div class="container-home-menu">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -19,8 +58,11 @@
                 <li><a style="color: #000;font-weight: 600;" class="container-nick" >{{name}} <br><span style="font-weight: 100; font-size: 10px;">{{user.email}}</span></a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="" data-toggle="modal" data-target="#User">Perfil</a></li>
+                <li><a href="" >Guias</a></li>
+                <li><a href="" >Tutoriales</a></li>
                 <li><a href="" ng-click="logout()">Salir</a></li>
               </ul>
+              <i class="fa fa-bell bell-user pull-left" aria-hidden="true"><span>1</span></i>
             </div>
          </li>
         </ul>
@@ -28,6 +70,9 @@
     </div>
   </div>
 </nav>
+-->
+
+
  <div class="col-xs-12" style="padding-top: 70px; ">
       <div class="row">
          <div class="col-md-2">

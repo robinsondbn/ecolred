@@ -268,78 +268,75 @@ app.controller('MainController', ['$scope', '$state', '$timeout', 'User', functi
                 }
             }]
         }
-    }
-    
-    function pruebaFunction(){
+    }*/
+
+    function pruebaFunction() {
         //llamada de función para optener el usuario
         getUser();
-        
-        $scope.barChart = new Chart('BarChart', {
-            type : 'bar',
-            data: barData,
-            options : chartOptions
-        });
-        $scope.lineChart = new Chart('LineChart', {
-            type : 'line',
-            data: lineData,
-            options : chartOptions
-        });
-        $scope.areaChart = new Chart('AreaChart', {
-            type : 'line',
-            data: areaData,
-            options : chartOptions
-        });
-        $scope.pieChart = new Chart('PieChart', {
-            type : 'pie',
-            data: pieData,
-            options : chartOptions
-        });
-        $scope.polarChart = new Chart('PolarChart', {
-            type : 'polarArea',
-            data: polarData,
-            options : chartOptions
-        });
-        $scope.donaChart = new Chart('DonaChart', {
-            type : 'doughnut',
-            data: donaData,
-            options : chartOptions
-        });
-    }
-    
-    $scope.ramdom = () => {
-        var newData = [88,52,11,66,77,33];
-        $scope.barChart.data.datasets.forEach((dataset) => {
-            dataset.data = newData;
-        });
-        $scope.barChart.update();
-        $scope.lineChart.data.datasets.forEach((dataset) => {
-            dataset.data = newData;
-        });
-        $scope.lineChart.update();
-        $scope.areaChart.data.datasets.forEach((dataset) => {
-            dataset.data = newData;
-        });
-        $scope.areaChart.update();
-        $scope.pieChart.data.datasets.forEach((dataset) => {
-            dataset.data = newData;
-        });
-        $scope.pieChart.update();
-        $scope.polarChart.data.datasets.forEach((dataset) => {
-            dataset.data = newData;
-        });
-        $scope.polarChart.update();
-        $scope.donaChart.data.datasets.forEach((dataset) => {
-            dataset.data = newData;
-        });
-        $scope.donaChart.update();
-    }
-    
-     $scope.funsions = () => {
-       
-     }*/
 
-    //$timeout(pruebaFunction(),1000);
+        //        $scope.barChart = new Chart('BarChart', {
+        //            type : 'bar',
+        //            data: barData,
+        //            options : chartOptions
+        //        });
+        //        $scope.lineChart = new Chart('LineChart', {
+        //            type : 'line',
+        //            data: lineData,
+        //            options : chartOptions
+        //        });
+        //        $scope.areaChart = new Chart('AreaChart', {
+        //            type : 'line',
+        //            data: areaData,
+        //            options : chartOptions
+        //        });
+        //        $scope.pieChart = new Chart('PieChart', {
+        //            type : 'pie',
+        //            data: pieData,
+        //            options : chartOptions
+        //        });
+        //        $scope.polarChart = new Chart('PolarChart', {
+        //            type : 'polarArea',
+        //            data: polarData,
+        //            options : chartOptions
+        //        });
+        //        $scope.donaChart = new Chart('DonaChart', {
+        //            type : 'doughnut',
+        //            data: donaData,
+        //            options : chartOptions
+        //        });
+    }
 
+    //    $scope.ramdom = () => {
+    //        var newData = [88,52,11,66,77,33];
+    //        $scope.barChart.data.datasets.forEach((dataset) => {
+    //            dataset.data = newData;
+    //        });
+    //        $scope.barChart.update();
+    //        $scope.lineChart.data.datasets.forEach((dataset) => {
+    //            dataset.data = newData;
+    //        });
+    //        $scope.lineChart.update();
+    //        $scope.areaChart.data.datasets.forEach((dataset) => {
+    //            dataset.data = newData;
+    //        });
+    //        $scope.areaChart.update();
+    //        $scope.pieChart.data.datasets.forEach((dataset) => {
+    //            dataset.data = newData;
+    //        });
+    //        $scope.pieChart.update();
+    //        $scope.polarChart.data.datasets.forEach((dataset) => {
+    //            dataset.data = newData;
+    //        });
+    //        $scope.polarChart.update();
+    //        $scope.donaChart.data.datasets.forEach((dataset) => {
+    //            dataset.data = newData;
+    //        });
+    //        $scope.donaChart.update();
+    //    }
+
+    $scope.funsions = function () {};
+
+    $timeout(pruebaFunction(), 1);
 }]);
 app.controller('ParametersController', ['$scope', '$state', '$timeout', function ($scope, $state, $timeout) {}]);
 app.controller('RegisterController', ['$scope', 'User', function ($scope, User) {
@@ -374,6 +371,15 @@ app.controller('RegisterController', ['$scope', 'User', function ($scope, User) 
 }]);
 app.controller('ElectroconductivityController', ['$scope', '$state', '$timeout', function ($scope, $state, $timeout) {
 
+    $('#datepickerElectroconductivity').datepicker({
+        format: "dd/mm/yyyy",
+        maxViewMode: 2,
+        language: "es",
+        autoclose: true
+    }).on('changeDate', function (selected) {
+        console.log(selected.date);
+    });
+
     var lineData = {
         labels: ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
         datasets: [{
@@ -406,6 +412,15 @@ app.controller('ElectroconductivityController', ['$scope', '$state', '$timeout',
     $timeout(startFunction(), 1000);
 }]);
 app.controller('OxygenWaterController', ['$scope', '$state', '$timeout', function ($scope, $state, $timeout) {
+
+    $('#datepickerOxygenWater').datepicker({
+        format: "dd/mm/yyyy",
+        maxViewMode: 2,
+        language: "es",
+        autoclose: true
+    }).on('changeDate', function (selected) {
+        console.log(selected.date);
+    });
 
     var lineData = {
         labels: ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
@@ -440,6 +455,14 @@ app.controller('OxygenWaterController', ['$scope', '$state', '$timeout', functio
 }]);
 app.controller('PHController', ['$scope', '$state', '$timeout', function ($scope, $state, $timeout) {
 
+    $('#datepickerPH').datepicker({
+        format: "dd/mm/yyyy",
+        maxViewMode: 2,
+        language: "es",
+        autoclose: true
+    }).on('changeDate', function (selected) {
+        console.log(selected.date);
+    });
     var lineData = {
         labels: ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
         datasets: [{
@@ -473,6 +496,14 @@ app.controller('PHController', ['$scope', '$state', '$timeout', function ($scope
 }]);
 app.controller('RelativeHumidityController', ['$scope', '$state', '$timeout', function ($scope, $state, $timeout) {
 
+    $('#datepickerRelativeHumidity').datepicker({
+        format: "dd/mm/yyyy",
+        maxViewMode: 2,
+        language: "es",
+        autoclose: true
+    }).on('changeDate', function (selected) {
+        console.log(selected.date);
+    });
     var lineData = {
         labels: ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
         datasets: [{
@@ -506,6 +537,15 @@ app.controller('RelativeHumidityController', ['$scope', '$state', '$timeout', fu
 }]);
 app.controller('RoomTemperatureController', ['$scope', '$state', '$timeout', function ($scope, $state, $timeout) {
 
+    $('#datepickerRoomTemperature').datepicker({
+        format: "dd/mm/yyyy",
+        maxViewMode: 2,
+        language: "es",
+        autoclose: true
+    }).on('changeDate', function (selected) {
+        console.log(selected.date);
+    });
+
     var lineData = {
         labels: ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
         datasets: [{
@@ -538,6 +578,15 @@ app.controller('RoomTemperatureController', ['$scope', '$state', '$timeout', fun
     $timeout(startFunction(), 1000);
 }]);
 app.controller('WaterTemperatureController', ['$scope', '$state', '$timeout', function ($scope, $state, $timeout) {
+
+    $('#datepickerWaterTemperature').datepicker({
+        format: "dd/mm/yyyy",
+        maxViewMode: 2,
+        language: "es",
+        autoclose: true
+    }).on('changeDate', function (selected) {
+        console.log(selected.date);
+    });
 
     var lineData = {
         labels: ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
@@ -719,7 +768,6 @@ app.service('UsersServices', ['$state', function ($state) {
     this.login = function (User) {
         firebase.auth().signInWithEmailAndPassword(User.email, User.password).then(function () {
             $state.go('main');
-            swal('Bienvenido');
         }).catch(function (error) {
             // Handle Errors here.
             var errorCode = error.code;

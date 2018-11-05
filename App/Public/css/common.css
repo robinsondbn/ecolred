@@ -33,6 +33,9 @@
   border-left: 6px solid transparent;
   content: '';
 }
+.input-group-addon {
+    padding: 5px 12px;
+}
 @media (min-width: 1300px){
   .container {
       width: 1270px;

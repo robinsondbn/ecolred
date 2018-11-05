@@ -201,6 +201,14 @@ header {
   cursor: default;
 }
 
+.bell-user{
+  margin-top: 25px;
+/*  margin-right: 20px!important;*/
+  font-size: 20px;
+  color: #54B202;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 1370px) {
     .footer-body{ 
         height: 44px; 

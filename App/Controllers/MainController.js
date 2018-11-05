@@ -253,7 +253,7 @@ app.controller('MainController', ['$scope','$state','$timeout','User', function(
        
      }
     
-    $timeout(pruebaFunction(),1000);
+    $timeout(pruebaFunction(),1);
     
     
     
