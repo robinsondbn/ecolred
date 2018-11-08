@@ -167,19 +167,36 @@
             </div>
             <div class="modal-body">
                 <form>
-                    <label for="name" class="control-label">Nombre</label>
+                    <label for="name" class="control-label">Nombre que si cambio {{changePassword}}</label>
                     <input type="text" class="form-control" id="name" ng-model="user.name" placeholder="Nombre" required>
                     <label for="email" class="control-label">Correo</label>
                     <input type="email" class="form-control" id="email" ng-model="user.email" placeholder="example@example.com" required>
+                    <div ng-show="changePassword" ng-init="changePassword = false">
+                        <p class="bg-danger">Los cambios en la contraseña lo obligarán a entrar de nuevo a la plataforma</p>
+                        <label for="pass" class="control-label">Contraseña Actual</label>
+                        <input type="password" class="form-control" id="pass" ng-model="contra.pass" placeholder="********">
+                        <label for="password" class="control-label">Nueva Contraseña</label>
+                        <input type="password" class="form-control" id="password" ng-model="contra.password" placeholder="********">
+                        <label for="confirmpassword" class="control-label">Confirmar Nueva Contraseña</label>
+                        <input type="password" class="form-control" id="confimrpassword" ng-model="contra.confirmpassword" placeholder="*******">    
+                    </div>
+                    <!--
                     <label for="password" class="control-label">Contraseña</label>
                     <input type="password" class="form-control" id="password" ng-model="user.password" placeholder="********">
                     <label for="confirmpassword" class="control-label">Confirmar contraseña</label>
-                    <input type="password" class="form-control" id="confimrpassword" ng-model="user.confirmpassword" placeholder="*******">
+                    <input type="password" class="form-control" id="confimrpassword" ng-model="user.confirmpassword" placeholder="*******">-->
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="modifyUser()">Guardar Cambios</button>
+                <div ng-show="changePassword == false">
+                    <button type="button" class="btn btn-primary pull-left" ng-click="changePassword = true">Cambiar contraseña</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="changePassword = false">Cancelar</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="modifyUser()">Guardar Cambios</button>
+                </div>
+                <div ng-show="changePassword == true">
+                    <button type="button" class="btn bnt-secondary" ng-click="changePassword = false">Cancelar</button>
+                    <button type="button" class="btn btn-primary" ng-click="console.log('cambio de contraseña')">Guardar Contraseña</button>
+                </div>
             </div>
         </div>
     </div>
