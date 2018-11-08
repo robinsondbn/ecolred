@@ -89,6 +89,12 @@ app.controller('MainController', ['$scope', '$state', '$timeout', 'User', functi
     $scope.showParameter = 0;
     $scope.user = User;
     $scope.name = ' ';
+    $scope.messageError = null;
+    $scope.contra = {
+        pass: null,
+        password: null,
+        confirmpassword: null
+    };
 
     function getUser() {
         firebase.auth().onAuthStateChanged(function (user) {
@@ -124,186 +130,28 @@ app.controller('MainController', ['$scope', '$state', '$timeout', 'User', functi
         $scope.user.logout();
     };
 
-    /*var barData = {
-        labels: ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
-        datasets: [{
-            label: 'Parámetros',
-            data: [99, 22, 7, 40, 1, 25],
-            backgroundColor: [
-                'rgba(139, 195, 74, 0.8)',
-                'rgba(139, 195, 74, 0.8)',
-                'rgba(139, 195, 74, 0.8)',
-                'rgba(139, 195, 74, 0.8)',
-                'rgba(139, 195, 74, 0.8)',
-                'rgba(139, 195, 74, 0.8)'
-            ],
-            borderColor: [
-                'rgba(139, 195, 74, 1)',
-                'rgba(139, 195, 74, 1)',
-                'rgba(139, 195, 74, 1)',
-                'rgba(139, 195, 74, 1)',
-                'rgba(139, 195, 74, 1)',
-                'rgba(139, 195, 74, 1)'
-            ],
-            borderWidth: 1
-        }]
-    };
-    
-    var lineData = {
-        labels: ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
-        datasets: [{
-            label: 'Parámetros',
-            data: [99, 22, 7, 40, 1, 25],
-            backgroundColor: [ 'rgba(139, 195, 74, 0.8)'],
-            borderColor: [ ],
-            borderWidth: 1
-        }]
-    };
-    
-    var areaData = {
-        labels: ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
-        datasets: [{
-            label: 'Parámetros',
-            data: [99, 22, 7, 40, 1, 25],
-            backgroundColor: [
-                'rgba(139, 195, 74, 0.8)',
-                'rgba(139, 195, 74, 0.8)',
-                'rgba(139, 195, 74, 0.8)',
-                'rgba(139, 195, 74, 0.8)',
-                'rgba(139, 195, 74, 0.8)',
-                'rgba(139, 195, 74, 0.8)'
-            ],
-            borderColor: [
-                'rgba(139, 195, 74, 1)',
-                'rgba(139, 195, 74, 1)',
-                'rgba(139, 195, 74, 1)',
-                'rgba(139, 195, 74, 1)',
-                'rgba(139, 195, 74, 1)',
-                'rgba(139, 195, 74, 1)'
-            ],
-            borderWidth: 1
-        }]
-    };
-    
-    var pieData = {
-        labels: ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
-        datasets: [{
-            label: 'Parámetros',
-            data: [99, 22, 7, 40, 1, 25],
-            backgroundColor: [
-                'rgba(197, 225, 165, 0.8)',
-                'rgba(174, 213, 129, 0.8)',
-                'rgba(139, 195, 74, 0.8)',
-                'rgba(104, 159, 56, 0.8)',
-                'rgba(85, 139, 47, 0.8)',
-                'rgba(51, 105, 30, 0.8)'
-            ],
-            borderColor: [
-                'rgba(197, 225, 165, 1)',
-                'rgba(174, 213, 129, 1)',
-                'rgba(139, 195, 74, 1)',
-                'rgba(104, 159, 56, 1)',
-                'rgba(85, 139, 47, 1)',
-                'rgba(51, 105, 30, 1)'
-            ],
-            borderWidth: 1
-        }]
-    };
-    
-    var polarData = {
-        labels: ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
-        datasets: [{
-            label: 'Parámetros',
-            data: [99, 22, 7, 40, 1, 25],
-            backgroundColor: [
-                'rgba(197, 225, 165, 0.8)',
-                'rgba(174, 213, 129, 0.8)',
-                'rgba(139, 195, 74, 0.8)',
-                'rgba(104, 159, 56, 0.8)',
-                'rgba(85, 139, 47, 0.8)',
-                'rgba(51, 105, 30, 0.8)'
-            ],
-            borderColor: [
-                'rgba(197, 225, 165, 1)',
-                'rgba(174, 213, 129, 1)',
-                'rgba(139, 195, 74, 1)',
-                'rgba(104, 159, 56, 1)',
-                'rgba(85, 139, 47, 1)',
-                'rgba(51, 105, 30, 1)'
-            ],
-            borderWidth: 1
-        }]
-    };
-    
-    var donaData = {
-        labels: ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
-        datasets: [{
-            label: 'Parámetros',
-            data: [99, 22, 7, 40, 1, 25],
-            backgroundColor: [
-                'rgba(197, 225, 165, 0.8)',
-                'rgba(174, 213, 129, 0.8)',
-                'rgba(139, 195, 74, 0.8)',
-                'rgba(104, 159, 56, 0.8)',
-                'rgba(85, 139, 47, 0.8)',
-                'rgba(51, 105, 30, 0.8)'
-            ],
-            borderColor: [
-                'rgba(197, 225, 165, 1)',
-                'rgba(174, 213, 129, 1)',
-                'rgba(139, 195, 74, 1)',
-                'rgba(104, 159, 56, 1)',
-                'rgba(85, 139, 47, 1)',
-                'rgba(51, 105, 30, 1)'
-            ],
-            borderWidth: 1
-        }]
-    };
-    
-    var chartOptions = {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
+    $scope.changePasswordFunction = function () {
+        if ($scope.contra.pass) {
+            if ($scope.contra.pass.length < 6 || $scope.contra.password.length < 6 || $scope.contra.password.length < 6) {
+                $scope.messageError = 'La contraseña debe de tener mínimo 6 caracteres';
+            } else {
+                if ($scope.contra.password === $scope.contra.confirmpassword) {
+                    $scope.messageError = '';
+                    $scope.user.changePassword($scope.contra, function (message) {
+                        $scope.messageError = message;
+                    });
+                } else {
+                    $scope.messageError = 'Las contraseñas no coinciden';
                 }
-            }]
+            }
+        } else {
+            $scope.messageError = 'Debe de colocar la contraseña actual para actualizar';
         }
-    }*/
+    };
 
     function pruebaFunction() {
         //llamada de función para optener el usuario
         getUser();
-
-        //        $scope.barChart = new Chart('BarChart', {
-        //            type : 'bar',
-        //            data: barData,
-        //            options : chartOptions
-        //        });
-        //        $scope.lineChart = new Chart('LineChart', {
-        //            type : 'line',
-        //            data: lineData,
-        //            options : chartOptions
-        //        });
-        //        $scope.areaChart = new Chart('AreaChart', {
-        //            type : 'line',
-        //            data: areaData,
-        //            options : chartOptions
-        //        });
-        //        $scope.pieChart = new Chart('PieChart', {
-        //            type : 'pie',
-        //            data: pieData,
-        //            options : chartOptions
-        //        });
-        //        $scope.polarChart = new Chart('PolarChart', {
-        //            type : 'polarArea',
-        //            data: polarData,
-        //            options : chartOptions
-        //        });
-        //        $scope.donaChart = new Chart('DonaChart', {
-        //            type : 'doughnut',
-        //            data: donaData,
-        //            options : chartOptions
-        //        });
     }
 
     //    $scope.ramdom = () => {
@@ -660,11 +508,20 @@ app.factory('User', ['UsersServices', '$state', function (UsersServices, $state)
     user.modify = function () {
         var modifyUser = {
             name: user.name,
-            email: user.email,
-            password: user.password
+            email: user.email
         };
 
         UsersServices.modify(modifyUser);
+    };
+
+    user.changePassword = function (UserData, errorMessage) {
+        UsersServices.changePassword(UserData, function (err) {
+            if (err.code == 'auth/wrong-password') {
+                errorMessage('Contraseña no valida');
+            } else if (err.code == 'auth/weak-password') ;{
+                errorMessage('La contraseña debe de tener mínimo 6 caracteres');
+            }
+        });
     };
 
     user.login = function () {
@@ -725,7 +582,6 @@ app.service('UsersServices', ['$state', function ($state) {
             var errorCode = error.code;
             var errorMessage = error.message;
             console.log(error);
-
             if (errorCode === 'auth/email-already-in-use') {
                 swal('Correo en uso', 'El correo ya se encuentra registrado', 'error');
             } else if (errorCode === 'auth/weak-password') {
@@ -742,15 +598,7 @@ app.service('UsersServices', ['$state', function ($state) {
             }).then(function () {
                 if (User.email) {
                     UserToModify.updateEmail(User.email).then(function () {
-                        if (User.password) {
-                            UserToModify.updatePassword(User.password).then(function () {
-                                $state.reload();
-                            }).catch(function (err3) {
-                                swal('Error', err3, 'error');
-                            });
-                        } else {
-                            $state.reload();
-                        }
+                        $state.reload();
                     }).catch(function (err2) {
                         swal('Error', err2, 'error');
                     });
@@ -763,6 +611,25 @@ app.service('UsersServices', ['$state', function ($state) {
         } else {
             swal('Error desconocido', 'Ha ocurrido un error al modificar los datos, estamos trabajando en ello', 'error');
         }
+    };
+
+    this.changePassword = function (DataUser, errorCallback) {
+        var UserToModify = firebase.auth().currentUser;
+        var credential = firebase.auth.EmailAuthProvider.credential(UserToModify.email, DataUser.pass);
+        UserToModify.reauthenticateAndRetrieveDataWithCredential(credential).then(function () {
+            UserToModify.updatePassword(DataUser.password).then(function () {
+                firebase.auth().signOut().then(function () {
+                    $('#User').modal('hide');
+                    $state.go('index.login');
+                }).catch(function (err) {
+                    errorCallback(err);
+                });
+            }).catch(function (err) {
+                errorCallback(err);
+            });
+        }).catch(function (error) {
+            errorCallback(error);
+        });
     };
 
     this.login = function (User) {

@@ -28,11 +28,20 @@ app.factory('User', ['UsersServices','$state', function(UsersServices, $state){
     user.modify = () => {
         let modifyUser = {
             name : user.name,
-            email : user.email,
-            password : user.password
+            email : user.email
         }
         
         UsersServices.modify(modifyUser);
+    }
+    
+    user.changePassword = (UserData, errorMessage) => {
+        UsersServices.changePassword(UserData, function(err){
+            if(err.code == 'auth/wrong-password'){
+                errorMessage('Contraseña no valida');
+            }else if(err.code == 'auth/weak-password');{
+                errorMessage('La contraseña debe de tener mínimo 6 caracteres');
+            }
+        });
     }
     
     user.login = () => {

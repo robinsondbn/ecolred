@@ -178,8 +178,9 @@
                         <label for="password" class="control-label">Nueva Contraseña</label>
                         <input type="password" class="form-control" id="password" ng-model="contra.password" placeholder="********">
                         <label for="confirmpassword" class="control-label">Confirmar Nueva Contraseña</label>
-                        <input type="password" class="form-control" id="confimrpassword" ng-model="contra.confirmpassword" placeholder="*******">    
+                        <input type="password" class="form-control" id="confimrpassword" ng-model="contra.confirmpassword" placeholder="********">    
                     </div>
+                    <p class="bg-danger" ng-if="messageError">{{messageError}}</p>
                     <!--
                     <label for="password" class="control-label">Contraseña</label>
                     <input type="password" class="form-control" id="password" ng-model="user.password" placeholder="********">
@@ -195,7 +196,7 @@
                 </div>
                 <div ng-show="changePassword == true">
                     <button type="button" class="btn bnt-secondary" ng-click="changePassword = false">Cancelar</button>
-                    <button type="button" class="btn btn-primary" ng-click="console.log('cambio de contraseña')">Guardar Contraseña</button>
+                    <button type="button" class="btn btn-primary" ng-click="changePasswordFunction()">Guardar Contraseña</button>
                 </div>
             </div>
         </div>
