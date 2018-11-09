@@ -57,6 +57,11 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $htt
         url: '/oxigeno en el agua',
         controller: 'OxygenWaterController',
         templateUrl: 'App/Views/Parameters/oxygen_water.html'
+    }).state({
+        name: 'admin',
+        url: '/administrador',
+        controller: 'AdminController',
+        templateUrl: 'App/Views/Admin/main.html'
     });
 
     $httpProvider.interceptors.push('AuthMiddleware');
@@ -67,6 +72,20 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $htt
     });
 });
 
+app.controller('AdminController', ['$scope', '$state', '$timeout', 'UsersServices', 'AuthMiddleware', function ($scope, $state, $timeout, UsersServices, AuthMiddleware) {
+
+    AuthMiddleware.adminOnly();
+
+    $scope.llamarDatos = function () {
+        firebase.database().ref('/users/').once('value').then(function (snapshot) {
+            $scope.array = snapshot.val();
+        });
+    };
+
+    $scope.salir = function () {
+        UsersServices.logout();
+    };
+}]);
 app.controller('LoginController', ['$scope', '$state', 'User', function ($scope, $state, User) {
 
     $scope.user = User;
@@ -85,7 +104,10 @@ app.controller('LoginController', ['$scope', '$state', 'User', function ($scope,
         $state.go('register');
     };
 }]);
-app.controller('MainController', ['$scope', '$state', '$timeout', 'User', function ($scope, $state, $timeout, User) {
+app.controller('MainController', ['$scope', '$state', '$timeout', 'User', 'AuthMiddleware', function ($scope, $state, $timeout, User, AuthMiddleware) {
+
+    AuthMiddleware.mainOnly();
+
     $scope.showParameter = 0;
     $scope.user = User;
     $scope.name = ' ';
@@ -195,10 +217,11 @@ app.controller('RegisterController', ['$scope', 'User', function ($scope, User) 
         console.log($scope.user.associationType, $scope.user.name, $scope.user.lastName, $scope.user.documentType, $scope.user.documentNumber, $scope.user.email, $scope.user.phoneNumber, $scope.user.address, $scope.user.municipality, $scope.user.department);
         var password = $scope.user.password;
         var confirmPassword = $scope.user.confirmpassword;
+
         if (password === confirmPassword) {
             swal({
                 title: "Formulario completo",
-                text: "¿Esta seguro que desea enviar la informacion?",
+                text: "¿Esta seguro que desea enviar la información?",
                 icon: "warning",
                 buttons: true,
                 dangerMode: true
@@ -482,25 +505,53 @@ app.directive('parametros', ['$state', function ($state) {
 app.factory('User', ['UsersServices', '$state', function (UsersServices, $state) {
 
     var user = {
+        associationType: null,
         name: null,
+        lastName: null,
+        documentType: null,
+        documentNumber: null,
         email: null,
+        phoneNumber: null,
+        address: null,
+        municipality: null,
+        department: null,
+        zone: null,
         password: null,
         confirmpassword: null
     };
 
     user.init = function (setup) {
+        user.associationType = setup.associationType;
         user.name = setup.name;
+        user.lastName = setup.lastName;
+        user.documentType = setup.documentType;
+        user.documentNumber = setup.documentNumber;
         user.email = setup.email;
+        user.phoneNumber = setup.phoneNumber;
+        user.address = setup.address;
+        user.municipality = setup.municipality;
+        user.department = setup.department;
+        user.zone = setup.zone;
         user.password = setup.password;
         user.confirmpassword = setup.confirmpassword;
     };
 
     user.create = function () {
         var newUser = {
+            associationType: user.associationType,
             name: user.name,
+            lastName: user.lastName,
+            documentType: user.documentType,
+            documentNumber: user.documentNumber,
             email: user.email,
+            phoneNumber: user.phoneNumber,
+            address: user.address,
+            municipality: user.municipality,
+            department: user.department,
+            zone: user.zone,
             password: user.password
         };
+        console.log(newUser);
         UsersServices.create(newUser);
         user.reset();
     };
@@ -552,7 +603,7 @@ app.factory('AuthMiddleware', ['$state', function ($state) {
 
     var authMiddleware = this;
 
-    authMiddleware.run = function (event) {
+    authMiddleware.run = function () {
         firebase.auth().onAuthStateChanged(function (user) {
             if (!user) {
                 $state.go('index.login');
@@ -560,23 +611,80 @@ app.factory('AuthMiddleware', ['$state', function ($state) {
         });
     };
 
-    return {
-        run: authMiddleware.run
+    authMiddleware.privileges = function () {
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                if (user.email === 'monte07jul@hotmail.com') {
+                    $state.go('main');
+                } else {
+                    $state.go('admin');
+                }
+            } else {
+                $state.go('index.login');
+            }
+        });
     };
+
+    authMiddleware.mainOnly = function () {
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                if (user.email === 'monte07jul@hotmail.com') {
+                    $state.go('admin');
+                }
+            } else {
+                $state.go('index.login');
+            }
+        });
+    };
+
+    authMiddleware.adminOnly = function () {
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                if (user.email !== "monte07jul@hotmail.com") {
+                    $state.go('main');
+                }
+            } else {
+                $state.go('index.login');
+            }
+        });
+    };
+
+    return authMiddleware;
 }]);
-app.service('UsersServices', ['$state', function ($state) {
+app.service('UsersServices', ['$state', 'AuthMiddleware', function ($state, AuthMiddleware) {
     var _this = this;
 
     this.create = function (User) {
 
         var email = User.email;
         var password = User.password;
-
+        console.log(User);
         firebase.auth().createUserWithEmailAndPassword(email, password).then(function () {
-            swal("Usuario creado con éxito", "Datos guardados correctamente!", "success").then(function () {
+            firebase.auth().onAuthStateChanged(function (user) {
+                if (user) {
+                    database.ref('users/' + user.uid).set(User, function (err) {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            console.log('todo bien');
+                        }
+                    });
+                    user.updateProfile({
+                        displayName: User.name,
+                        phoneNumber: User.phoneNumber
+                    }).then(function (User) {
+                        //firebase.auth().signOut();
+                    }).catch(function (error) {
+                        //firebase.auth().signOut();
+                    });
+                } else {
+                    // No user is signed in.
+                }
+            });
+            /*swal("Usuario creado con éxito", "Datos guardados correctamente!", "success").then(() => {
                 $state.reload();
                 $state.go('main');
-            });
+            });*/
         }).catch(function (error) {
             // Handle Errors here.
             var errorCode = error.code;
@@ -634,7 +742,7 @@ app.service('UsersServices', ['$state', function ($state) {
 
     this.login = function (User) {
         firebase.auth().signInWithEmailAndPassword(User.email, User.password).then(function () {
-            $state.go('main');
+            AuthMiddleware.privileges();
         }).catch(function (error) {
             // Handle Errors here.
             var errorCode = error.code;
@@ -668,6 +776,13 @@ app.service('UsersServices', ['$state', function ($state) {
                 return _ref.apply(this, arguments);
             };
         }());
+    };
+
+    this.getAllUser = function () {
+        var data = firebase.database().ref('users');
+        data.on('value', function (snapshop) {
+            console.log(snapshop);
+        });
     };
 
     this.logout = function () {

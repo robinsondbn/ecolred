@@ -1,25 +1,53 @@
 app.factory('User', ['UsersServices','$state', function(UsersServices, $state){
     
     let user = {
-        name : null,
-        email : null,
+        associationType: null,
+        name: null,
+        lastName: null,
+        documentType: null,
+        documentNumber: null,
+        email: null,
+        phoneNumber: null,
+        address: null,
+        municipality: null,
+        department: null,
+        zone: null,
         password : null,
         confirmpassword : null
     };
     
     user.init = (setup) => {
+        user.associationType = setup.associationType;
         user.name = setup.name;
+        user.lastName = setup.lastName;
+        user.documentType = setup.documentType;
+        user.documentNumber = setup.documentNumber;
         user.email = setup.email;
+        user.phoneNumber = setup.phoneNumber;
+        user.address = setup.address;
+        user.municipality = setup.municipality;
+        user.department = setup.department;
+        user.zone = setup.zone;
         user.password = setup.password;
         user.confirmpassword = setup.confirmpassword;
     }
     
     user.create = () => {
         let newUser = {
-            name : user.name,
-            email : user.email,
-            password : user.password
+            associationType:    user.associationType,
+            name:               user.name,
+            lastName:           user.lastName,
+            documentType:       user.documentType,
+            documentNumber:     user.documentNumber,
+            email:              user.email,
+            phoneNumber:        user.phoneNumber,
+            address:            user.address,
+            municipality:       user.municipality,
+            department:         user.department,
+            zone:               user.zone,
+            password:           user.password
         }
+        console.log(newUser);
         UsersServices.create(newUser);
         user.reset();
         

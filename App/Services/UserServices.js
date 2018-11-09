@@ -1,28 +1,50 @@
-app.service('UsersServices',['$state', function($state){
+app.service('UsersServices',['$state','AuthMiddleware', function($state,AuthMiddleware){
    
     this.create = (User) => {
         
         var email = User.email;
         var password = User.password;
-        
-        firebase.auth().createUserWithEmailAndPassword(email, password)
-            .then(()=>{
-                swal("Usuario creado con éxito", "Datos guardados correctamente!", "success").then(() => {
-                    $state.reload();
-                    $state.go('main');
-                });            
-            }).catch(function(error) {
-                // Handle Errors here.
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                console.log(error);
-                if(errorCode === 'auth/email-already-in-use'){
-                    swal('Correo en uso','El correo ya se encuentra registrado','error');
-                }else if(errorCode === 'auth/weak-password'){
-                    swal('Contraseña erronea','La contraseña debe de contener como mínimo 6 carácteres','error');
-                }
+        console.log(User);
+        firebase.auth().createUserWithEmailAndPassword(email, password).then(()=>{
+            firebase.auth().onAuthStateChanged(function(user) {
+                if (user) {
+                    database.ref('users/' + user.uid).set(User, function(err){
+                        if(err){
+                           console.log(err);
+                        }else{
+                            console.log('todo bien');
+                        }
+                    });
+                    user.updateProfile({
+                        displayName: User.name,
+                        phoneNumber: User.phoneNumber
+                    }).then(function(User) {
+                        //firebase.auth().signOut();
+                    }).catch(function(error) {
+                        //firebase.auth().signOut();
+                    });
+              } else {
+                // No user is signed in.
+              }
             });
+            /*swal("Usuario creado con éxito", "Datos guardados correctamente!", "success").then(() => {
+                $state.reload();
+                $state.go('main');
+            });*/            
+        }).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            console.log(error);
+            if(errorCode === 'auth/email-already-in-use'){
+                swal('Correo en uso','El correo ya se encuentra registrado','error');
+            }else if(errorCode === 'auth/weak-password'){
+                swal('Contraseña erronea','La contraseña debe de contener como mínimo 6 carácteres','error');
+            }
+        });
     }
+    
+    
     
     this.modify = (User) => {
         var UserToModify = firebase.auth().currentUser;
@@ -69,7 +91,7 @@ app.service('UsersServices',['$state', function($state){
     
     this.login = (User) => {
         firebase.auth().signInWithEmailAndPassword(User.email, User.password).then(()=>{
-                $state.go('main');
+                AuthMiddleware.privileges();
             }).catch(function(error) {
               // Handle Errors here.
               var errorCode = error.code;
@@ -82,6 +104,14 @@ app.service('UsersServices',['$state', function($state){
         firebase.auth().onAuthStateChanged(async (user) => {
             return await user
         });
+    }
+    
+    this.getAllUser = () => {
+        var data = firebase.database().ref('users');
+        data.on('value', function(snapshop){
+            console.log(snapshop);
+        })
+        
     }
     
     this.logout = () => {

@@ -8,26 +8,22 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider, $http
         controller : 'LoginController',
         //template : templateString
         templateUrl : 'App/Views/index.html'
-   })
-    .state({
+   }).state({
         name : 'index.login',
         url : '/login',
         controller : 'LoginController',
         templateUrl : 'App/Views/login/cover.html'
-    })
-    .state({
+    }).state({
         name : 'index.register',
         url : '/register',
         controller : 'RegisterController',
         templateUrl : 'App/Views/login/register.html'
-    })
-    .state({
+    }).state({
         name : 'main',
         url : '/main',
         controller : 'MainController',
         templateUrl : 'App/Views/main.html'
-    })
-    .state({
+    }).state({
         name : 'main.room_temperature',
         url : '/temperatura ambiental',
         controller : 'RoomTemperatureController',
@@ -57,6 +53,11 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider, $http
         url : '/oxigeno en el agua',
         controller : 'OxygenWaterController',
         templateUrl : 'App/Views/Parameters/oxygen_water.html'
+    }).state({
+        name : 'admin',
+        url : '/administrador',
+        controller : 'AdminController',
+        templateUrl : 'App/Views/Admin/main.html'
     });
     
     

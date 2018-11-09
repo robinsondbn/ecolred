@@ -1,4 +1,7 @@
-app.controller('MainController', ['$scope','$state','$timeout','User', function($scope,$state,$timeout,User){
+app.controller('MainController', ['$scope','$state','$timeout','User', 'AuthMiddleware',function($scope,$state,$timeout,User,AuthMiddleware){
+    
+    AuthMiddleware.mainOnly();
+    
     $scope.showParameter = 0;
     $scope.user = User;
     $scope.name = ' ';
