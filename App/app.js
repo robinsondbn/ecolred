@@ -58,6 +58,21 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider, $http
         url : '/administrador',
         controller : 'AdminController',
         templateUrl : 'App/Views/Admin/main.html'
+    }).state({
+        name : 'admin.users',
+        url : '/usuarios',
+        controller : 'AdminUserController',
+        templateUrl : 'App/Views/Admin/user.html'
+    }).state({
+        name : 'admin.parameters',
+        url : '/parámetros',
+        controller : 'AdminParameterController',
+        templateUrl : 'App/Views/Admin/parameter.html'
+    }).state({
+        name : 'admin.guide',
+        url : '/archivos',
+        controller : 'AdminGuideController',
+        templateUrl : 'App/Views/Admin/guide.html'
     });
     
     
