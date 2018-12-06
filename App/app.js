@@ -58,17 +58,27 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider, $http
         url : '/administrador',
         controller : 'AdminController',
         templateUrl : 'App/Views/Admin/main.html'
-    }).state({
+    }).state({//usuarios 
         name : 'admin.users',
         url : '/usuarios',
         controller : 'AdminUserController',
-        templateUrl : 'App/Views/Admin/user.html'
+        templateUrl : 'App/Views/Admin/Users/user.html'
     }).state({
+        name: 'admin.users.info',
+        url:'/usuarios',
+        controller : 'AdminUserModifyController',
+        templateUrl : 'App/Views/Admin/Users/info.html'
+    }).state({//parámetros
         name : 'admin.parameters',
         url : '/parámetros',
         controller : 'AdminParameterController',
-        templateUrl : 'App/Views/Admin/parameter.html'
+        templateUrl : 'App/Views/Admin/Parameters/parameter.html'
     }).state({
+        name : 'admin.parameters.modify',
+        url : '/parámetros',
+        controller : 'AdminParameterModifyController',
+        templateUrl : 'App/Views/Admin/Parameters/modify.html'
+    }).state({//Guías
         name : 'admin.guide',
         url : '/archivos',
         controller : 'AdminGuideController',

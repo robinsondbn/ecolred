@@ -62,17 +62,27 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $htt
         url: '/administrador',
         controller: 'AdminController',
         templateUrl: 'App/Views/Admin/main.html'
-    }).state({
+    }).state({ //usuarios 
         name: 'admin.users',
         url: '/usuarios',
         controller: 'AdminUserController',
-        templateUrl: 'App/Views/Admin/user.html'
+        templateUrl: 'App/Views/Admin/Users/user.html'
     }).state({
+        name: 'admin.users.info',
+        url: '/usuarios',
+        controller: 'AdminUserModifyController',
+        templateUrl: 'App/Views/Admin/Users/info.html'
+    }).state({ //parámetros
         name: 'admin.parameters',
         url: '/parámetros',
         controller: 'AdminParameterController',
-        templateUrl: 'App/Views/Admin/parameter.html'
+        templateUrl: 'App/Views/Admin/Parameters/parameter.html'
     }).state({
+        name: 'admin.parameters.modify',
+        url: '/parámetros',
+        controller: 'AdminParameterModifyController',
+        templateUrl: 'App/Views/Admin/Parameters/modify.html'
+    }).state({ //Guías
         name: 'admin.guide',
         url: '/archivos',
         controller: 'AdminGuideController',
@@ -150,18 +160,6 @@ app.controller('AdminController', ['$scope', '$state', '$timeout', 'UsersService
     $scope.salir = function () {
         UsersServices.logout();
     };
-}]);
-app.controller('AdminGuideController', ['$scope', '$state', '$timeout', 'AuthMiddleware', function ($scope, $state, $timeout, AuthMiddleware) {
-
-    AuthMiddleware.adminOnly();
-}]);
-app.controller('AdminParameterController', ['$scope', '$state', '$timeout', 'AuthMiddleware', function ($scope, $state, $timeout, AuthMiddleware) {
-
-    AuthMiddleware.adminOnly();
-}]);
-app.controller('AdminUserController', ['$scope', '$state', '$timeout', 'AuthMiddleware', function ($scope, $state, $timeout, AuthMiddleware) {
-
-    AuthMiddleware.adminOnly();
 }]);
 app.controller('ElectroconductivityController', ['$scope', '$state', '$timeout', function ($scope, $state, $timeout) {
 
@@ -516,6 +514,22 @@ app.controller('MainController', ['$scope', '$state', '$timeout', 'User', 'AuthM
     $scope.funsions = function () {};
 
     $timeout(pruebaFunction(), 1);
+}]);
+app.controller('AdminGuideController', ['$scope', '$state', '$timeout', 'AuthMiddleware', function ($scope, $state, $timeout, AuthMiddleware) {
+
+    AuthMiddleware.adminOnly();
+}]);
+app.controller('AdminParameterController', ['$scope', '$state', '$timeout', 'AuthMiddleware', function ($scope, $state, $timeout, AuthMiddleware) {
+
+    AuthMiddleware.adminOnly();
+}]);
+app.controller('AdminUserController', ['$scope', '$state', '$timeout', 'AuthMiddleware', function ($scope, $state, $timeout, AuthMiddleware) {
+
+    AuthMiddleware.adminOnly();
+}]);
+app.controller('AdminUserModifyController', ['$scope', '$state', '$timeout', 'AuthMiddleware', function ($scope, $state, $timeout, AuthMiddleware) {
+
+    AuthMiddleware.adminOnly();
 }]);
 app.directive('parametros', ['$state', function ($state) {
     return {
