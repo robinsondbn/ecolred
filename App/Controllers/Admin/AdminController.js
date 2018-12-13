@@ -8,7 +8,7 @@ app.controller('AdminController',['$scope', '$state','$timeout','UsersServices',
         });
     }
     
-    $scope.salir = () => {
+    $scope.logout = () => {
         UsersServices.logout();
     }
     
