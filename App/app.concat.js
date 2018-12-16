@@ -523,6 +523,10 @@ app.controller('AdminParameterController', ['$scope', '$state', '$timeout', 'Aut
 
     AuthMiddleware.adminOnly();
 }]);
+app.controller('AdminParameterModifyController', ['$scope', '$state', '$timeout', 'AuthMiddleware', function ($scope, $state, $timeout, AuthMiddleware) {
+
+    AuthMiddleware.adminOnly();
+}]);
 app.controller('AdminUserController', ['$scope', '$state', '$timeout', 'AuthMiddleware', function ($scope, $state, $timeout, AuthMiddleware) {
 
     AuthMiddleware.adminOnly();
