@@ -86,7 +86,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $htt
         name: 'admin.guide',
         url: '/archivos',
         controller: 'AdminGuideController',
-        templateUrl: 'App/Views/Admin/guide.html'
+        templateUrl: 'App/Views/Admin/Guides/guide.html'
     });
 
     $httpProvider.interceptors.push('AuthMiddleware');
@@ -157,7 +157,7 @@ app.controller('AdminController', ['$scope', '$state', '$timeout', 'UsersService
         });
     };
 
-    $scope.salir = function () {
+    $scope.logout = function () {
         UsersServices.logout();
     };
 }]);

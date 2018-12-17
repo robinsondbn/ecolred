@@ -1,1 +1,44 @@
-<p>usuarios</p>
+<div class="row">
+	<div class="col-md-12">
+		<div class="input-group">
+      		<input type="text" ng-model="filtro" class="form-control" placeholder="filtrar">
+      			<span class="input-group-btn">
+        			<button class="btn btn-default" type="button">Filtrar</button>
+      			</span>
+    	</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Apellido</th>
+					<th>Información</th>
+					<th>Estado</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Ejemplo</td>
+					<td>Ejemplo</td>
+					<td><a href="#"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
+					<td><span class="label label-success">Aceptado</span></td>
+				</tr>
+				<tr>
+					<td>Ejemplo</td>
+					<td>Ejemplo</td>
+					<td><a href="#"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
+					<td><span class="label label-danger">Rechazado</span></td>
+				</tr>
+				<tr>
+					<td>Ejemplo</td>
+					<td>Ejemplo</td>
+					<td><a href="#"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
+					<td><span class="label label-primary">Esperando</span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

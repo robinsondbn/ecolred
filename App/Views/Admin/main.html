@@ -1,5 +1,28 @@
 <div class="container">
-    <div class="row">
+	<div class="row">
+    	<div class="col-md-3">
+        	<nav class="navbar navbar-default">
+            	<div class="container-fluid">
+                	<div class="navbar-header">
+                  		<a class="navbar-brand" href="#">
+                    		<img alt="Ecolgreen" src="App/Public/img/Logo_Portada_Index.png"  style="height: 50px; margin: 0 50px;">
+                  		</a>
+                	</div>
+              	</div>
+              	<ul class="nav nav-pills nav-stacked">
+                  	<li><a ui-sref="admin.users">Usuarios</a></li>
+                  	<li><a ui-sref="admin.parameters">Parámetros</a></li>
+                  	<li><a ui-sref="admin.guide">Guías y tutoriales (Archivos)</a></li>
+              	</ul>
+           	</nav>
+       	</div>
+       	<div class="col-md-9">
+			<div style="margin-top: 20px"></div>
+			<ui-view></ui-view>
+		</div>
+	</div>
+   
+    <!--<div class="row">
         <div class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -32,7 +55,7 @@
     </div>
     <div class="row">
         <ui-view></ui-view>
-    </div>    
+    </div>-->
 </div>
 
 

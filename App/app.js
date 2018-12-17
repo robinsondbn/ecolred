@@ -82,7 +82,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider, $http
         name : 'admin.guide',
         url : '/archivos',
         controller : 'AdminGuideController',
-        templateUrl : 'App/Views/Admin/guide.html'
+        templateUrl : 'App/Views/Admin/Guides/guide.html'
     });
     
     
