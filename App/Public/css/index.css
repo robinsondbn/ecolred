@@ -209,6 +209,19 @@ header {
   cursor: pointer;
 }
 
+.navbar.navbar-green{
+	background-color: #54B202;
+}
+.navbar.navbar-green p,a{
+	color: #fff;
+	font-size: 20px;
+}
+.navbar.navbar-green p{
+	font-weight: bold;
+}
+.navbar.navbar-green a{
+	font-weight: lighter;
+}
 @media screen and (max-width: 1370px) {
     .footer-body{ 
         height: 44px; 
