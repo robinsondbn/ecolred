@@ -34,12 +34,13 @@ app.factory('Parameter', ['ParametersServices','$state', function(ParametersServ
 			dissolvedOxygenInTheWater : parameter.dissolvedOxygenInTheWater
         }
 		ParametersServices.create(newParameter, function(docRef){
+			parameter.reset();
+			$state.go('admin.parameters');
 			swal('Datos Guardados con éxito!','','success');
 		});
     }
     
     parameter.modify = (id) => {
-		console.log('is here');
         let modifyParameter = {
             typeofcrop : 				parameter.typeofcrop,
 			name : 						parameter.name,

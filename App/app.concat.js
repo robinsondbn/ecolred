@@ -139,6 +139,45 @@ app.controller('AdminController', ['$scope', '$state', '$timeout', 'AuthServices
         AuthServices.logout();
     };
 }]);
+app.controller('LoginController', ['$scope', '$state', 'Auth', function ($scope, $state, Auth) {
+
+    $scope.auth = Auth;
+
+    $scope.login = function () {
+        $scope.auth.login();
+    };
+
+    $scope.redirect = function () {
+        $('#loginOfThis').modal('hide');
+        $state.go('register');
+    };
+}]);
+app.controller('RegisterController', ['$scope', 'User', function ($scope, User) {
+
+    $scope.user = User;
+
+    $scope.register = function () {
+        console.log($scope.user.associationType, $scope.user.name, $scope.user.lastName, $scope.user.documentType, $scope.user.documentNumber, $scope.user.email, $scope.user.phoneNumber, $scope.user.address, $scope.user.municipality, $scope.user.department);
+        var password = $scope.user.password;
+        var confirmPassword = $scope.user.confirmpassword;
+
+        if (password === confirmPassword) {
+            swal({
+                title: "Formulario completo",
+                text: "¿Esta seguro que desea enviar la información?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true
+            }).then(function (willDelete) {
+                if (willDelete) {
+                    $scope.user.create();
+                }
+            });
+        } else {
+            swal('Las contraseñas no coinciden', 'Lo campos de las contraseñas deben de ser iguales', 'error');
+        }
+    };
+}]);
 app.controller('ElectroconductivityController', ['$scope', '$state', '$timeout', function ($scope, $state, $timeout) {
 
     $('#datepickerElectroconductivity').datepicker({
@@ -389,45 +428,6 @@ app.controller('WaterTemperatureController', ['$scope', '$state', '$timeout', fu
 
     $timeout(startFunction(), 1000);
 }]);
-app.controller('LoginController', ['$scope', '$state', 'Auth', function ($scope, $state, Auth) {
-
-    $scope.auth = Auth;
-
-    $scope.login = function () {
-        $scope.auth.login();
-    };
-
-    $scope.redirect = function () {
-        $('#loginOfThis').modal('hide');
-        $state.go('register');
-    };
-}]);
-app.controller('RegisterController', ['$scope', 'User', function ($scope, User) {
-
-    $scope.user = User;
-
-    $scope.register = function () {
-        console.log($scope.user.associationType, $scope.user.name, $scope.user.lastName, $scope.user.documentType, $scope.user.documentNumber, $scope.user.email, $scope.user.phoneNumber, $scope.user.address, $scope.user.municipality, $scope.user.department);
-        var password = $scope.user.password;
-        var confirmPassword = $scope.user.confirmpassword;
-
-        if (password === confirmPassword) {
-            swal({
-                title: "Formulario completo",
-                text: "¿Esta seguro que desea enviar la información?",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true
-            }).then(function (willDelete) {
-                if (willDelete) {
-                    $scope.user.create();
-                }
-            });
-        } else {
-            swal('Las contraseñas no coinciden', 'Lo campos de las contraseñas deben de ser iguales', 'error');
-        }
-    };
-}]);
 app.controller('MainController', ['$scope', '$state', '$timeout', 'User', 'AuthMiddleware', 'AuthServices', function ($scope, $state, $timeout, User, AuthMiddleware, AuthServices) {
 
     AuthMiddleware.mainOnly();
@@ -531,6 +531,10 @@ app.controller('MainController', ['$scope', '$state', '$timeout', 'User', 'AuthM
     $scope.funsions = function () {};
 
     $timeout(pruebaFunction(), 1);
+}]);
+app.controller('AdminGuideController', ['$scope', '$state', '$timeout', 'AuthMiddleware', function ($scope, $state, $timeout, AuthMiddleware) {
+
+    AuthMiddleware.adminOnly();
 }]);
 app.controller('AdminModuleController', ['$scope', '$state', '$timeout', 'AuthMiddleware', 'ModulesServices', function ($scope, $state, $timeout, AuthMiddleware, ModulesServices) {
 
@@ -769,10 +773,6 @@ app.controller('AdminParameterNewController', ['$scope', '$state', '$timeout', '
     $scope.create = function () {
         $scope.parameter.create();
     };
-}]);
-app.controller('AdminGuideController', ['$scope', '$state', '$timeout', 'AuthMiddleware', function ($scope, $state, $timeout, AuthMiddleware) {
-
-    AuthMiddleware.adminOnly();
 }]);
 app.directive('parametros', ['$state', function ($state) {
     return {
@@ -1088,12 +1088,13 @@ app.factory('Parameter', ['ParametersServices', '$state', function (ParametersSe
             dissolvedOxygenInTheWater: parameter.dissolvedOxygenInTheWater
         };
         ParametersServices.create(newParameter, function (docRef) {
+            parameter.reset();
+            $state.go('admin.parameters');
             swal('Datos Guardados con éxito!', '', 'success');
         });
     };
 
     parameter.modify = function (id) {
-        console.log('is here');
         var modifyParameter = {
             typeofcrop: parameter.typeofcrop,
             name: parameter.name,
