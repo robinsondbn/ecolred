@@ -1,15 +1,9 @@
-app.controller('AdminController',['$scope', '$state','$timeout','UsersServices','AuthMiddleware', function($scope, $state, $timeout,UsersServices,AuthMiddleware){
+app.controller('AdminController',['$scope', '$state','$timeout','AuthServices','AuthMiddleware', function($scope, $state, $timeout,AuthServices,AuthMiddleware){
     
     AuthMiddleware.adminOnly();
     
-    $scope.llamarDatos = () => {
-        firebase.database().ref('/users/').once('value').then((snapshot)=>{
-            $scope.array = snapshot.val();
-        });
-    }
-    
     $scope.logout = () => {
-        UsersServices.logout();
+        AuthServices.logout();
     }
     
 }]);

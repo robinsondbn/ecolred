@@ -1,126 +1,82 @@
-app.service('UsersServices',['$state','AuthMiddleware', function($state,AuthMiddleware){
+app.service('UsersServices',['AuthServices','$state','AuthMiddleware', function(AuthServices,$state,AuthMiddleware){
    
     this.create = (User) => {
-        
-        var email = User.email;
-        var password = User.password;
-        console.log(User);
-        firebase.auth().createUserWithEmailAndPassword(email, password).then(()=>{
-            firebase.auth().onAuthStateChanged(function(user) {
-                if (user) {
-                    database.ref('users/' + user.uid).set(User, function(err){
-                        if(err){
-                           console.log(err);
-                        }else{
-                            console.log('todo bien');
-                        }
-                    });
-                    user.updateProfile({
-                        displayName: User.name,
-                        phoneNumber: User.phoneNumber
-                    }).then(function(User) {
-                        //firebase.auth().signOut();
-                    }).catch(function(error) {
-                        //firebase.auth().signOut();
-                    });
-              } else {
-                // No user is signed in.
-              }
-            });
-            /*swal("Usuario creado con éxito", "Datos guardados correctamente!", "success").then(() => {
-                $state.reload();
-                $state.go('main');
-            });*/            
-        }).catch(function(error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            console.log(error);
-            if(errorCode === 'auth/email-already-in-use'){
-                swal('Correo en uso','El correo ya se encuentra registrado','error');
-            }else if(errorCode === 'auth/weak-password'){
-                swal('Contraseña erronea','La contraseña debe de contener como mínimo 6 carácteres','error');
-            }
-        });
+		AuthServices.create(User, function(){
+			firebase.auth().onAuthStateChanged(function(userA) {
+				if(userA){
+				   	db.collection("users").doc(userA.uid).set({
+						associationType:  	User.associationType,
+					   	name:				User.name,
+						lastName:			User.lastName,
+						documentType:		User.documentType,
+						documentNumber:		User.documentNumber,
+						email:				User.email,
+						phoneNumber:		User.phoneNumber,
+						address:			User.address,
+						municipality: 		User.municipality,
+						department: 		User.department,
+						zone: 				User.zone,
+						active:				'esperando',
+						modules: []
+					})
+					.then(function(docRef) {
+						$state.go('main');
+					})
+					.catch(function(error) {
+						console.log("Error ingresando el archivo");
+						console.log(error);
+					});
+				}else{
+					console.error('no user');
+				}
+			});
+		});
     }
     
     
     
-    this.modify = (User) => {
-        var UserToModify = firebase.auth().currentUser;
-        if(User.name){
-            UserToModify.updateProfile({
-                displayName : User.name
-            }).then(()=>{
-                if(User.email){
-                    UserToModify.updateEmail(User.email).then(()=>{
-                            $state.reload();
-                        }).catch((err2)=>{
-                            swal('Error',err2, 'error');        
-                        });
-                }else{
-                    $state.reload();
-                }
-            }).catch((err)=>{
-                swal('Error',err, 'error');
-            });
-        }else{
-            swal('Error desconocido','Ha ocurrido un error al modificar los datos, estamos trabajando en ello','error');
-        }
+    this.modify = (id, data,callback) => {
+        var documentToModify = db.collection('users').doc(id);
+		documentToModify.update(data)
+		.then(callback()).catch((error)=>{
+			console.log(error);
+		})
         
     }
-    
-    this.changePassword = (DataUser, errorCallback) => {
-        var UserToModify = firebase.auth().currentUser;
-        var credential = firebase.auth.EmailAuthProvider.credential(UserToModify.email, DataUser.pass);
-        UserToModify.reauthenticateAndRetrieveDataWithCredential(credential).then(function() {
-          UserToModify.updatePassword(DataUser.password).then(()=>{
-              firebase.auth().signOut().then(()=>{
-                  $('#User').modal('hide');
-                  $state.go('index.login');
-              }).catch((err)=>{
-                  errorCallback(err);
-              });
-          }).catch((err)=>{
-              errorCallback(err);
-          });
-        }).catch(function(error) {
-          errorCallback(error);
-        });
-    }
-    
-    this.login = (User) => {
-        firebase.auth().signInWithEmailAndPassword(User.email, User.password).then(()=>{
-                AuthMiddleware.privileges();
-            }).catch(function(error) {
-              // Handle Errors here.
-              var errorCode = error.code;
-              var errorMessage = error.message;
-              // ...
-            });
-    }
-    
-    this.getUser = () => {
-        firebase.auth().onAuthStateChanged(async (user) => {
-            return await user
-        });
-    }
-    
-    this.getAllUser = () => {
-        var data = firebase.database().ref('users');
-        data.on('value', function(snapshop){
-            console.log(snapshop);
-        })
-        
-    }
-    
-    this.logout = () => {
-        firebase.auth().signOut().then(()=>{
-            $state.go('index.login');
-        }).catch((err)=>{
-            var errorMesagge = err;
-            swal('error a tratar de salir',errorMesagge, 'error');
-        });
-    }
+	
+	this.getAll = (callback) => {
+		db.collection('users').get().then(function(docs){
+			callback(docs);
+		}).catch(function(error) {
+			console.log("Error getting document:", error);
+		})
+	}
+	
+	this.getByDocument = (document, callback) => {
+		document = parseInt(document)
+		db.collection('users').where("documentNumber","==",document).get().then(function(docs){
+			callback(docs);
+		}).catch(function(error) {
+			console.log("Error getting document:", error);
+		})
+	}
+	
+	this.getByEmail = (email, callback) => {
+		db.collection('users').where("email","==",email).get().then(function(docs){
+			callback(docs);
+		}).catch(function(error) {
+			console.log("Error getting document:", error);
+		})
+	}
+	
+	
+	this.addModule = (document, callback) => {
+		document = parseInt(document)
+		db.collection('users').where("documentNumber","==",document).get().then(function(docs){
+			callback(docs);
+		}).catch(function(error) {
+			console.log("Error getting document:", error);
+		})
+	}
     
 }]);

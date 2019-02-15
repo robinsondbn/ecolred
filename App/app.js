@@ -64,20 +64,55 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider, $http
         controller : 'AdminUserController',
         templateUrl : 'App/Views/Admin/Users/user.html'
     }).state({
-        name: 'admin.users.info',
-        url:'/usuarios',
+        name: 'admin.users_info',
+        url:'/usuarios/{nick_user}',
         controller : 'AdminUserModifyController',
-        templateUrl : 'App/Views/Admin/Users/info.html'
+        templateUrl : 'App/Views/Admin/Users/info.html',
+		resolve:{
+			Document: ['$stateParams', function($stateParams){
+				return $stateParams.nick_user
+			}]
+		}
     }).state({//parámetros
         name : 'admin.parameters',
         url : '/parámetros',
         controller : 'AdminParameterController',
         templateUrl : 'App/Views/Admin/Parameters/parameter.html'
     }).state({
-        name : 'admin.parameters.modify',
+        name : 'admin.parameters_new',
         url : '/parámetros',
+        controller : 'AdminParameterNewController',
+        templateUrl : 'App/Views/Admin/Parameters/new.html'
+    }).state({
+        name : 'admin.parameters_modify',
+        url : '/parámetros/:nick_parameter',
         controller : 'AdminParameterModifyController',
-        templateUrl : 'App/Views/Admin/Parameters/modify.html'
+        templateUrl : 'App/Views/Admin/Parameters/modify.html',
+		resolve:{
+			Document :['$stateParams', function($stateParams){
+				return $stateParams.nick_parameter
+			}]
+		}
+    }).state({//módulos
+        name : 'admin.modules',
+        url : '/módulos',
+        controller : 'AdminModuleController',
+        templateUrl : 'App/Views/Admin/Modules/module.html'
+    }).state({
+        name : 'admin.modules_new',
+        url : '/módulos',
+        controller : 'AdminModuleNewController',
+        templateUrl : 'App/Views/Admin/Modules/new.html'
+    }).state({
+        name : 'admin.modules_modify',
+        url : '/módulos/:nick_module',
+        controller : 'AdminModuleModifyController',
+        templateUrl : 'App/Views/Admin/Modules/modify.html',
+		resolve:{
+			Document :['$stateParams', function($stateParams){
+				return $stateParams.nick_module
+			}]
+		}
     }).state({//Guías
         name : 'admin.guide',
         url : '/archivos',

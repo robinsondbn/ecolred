@@ -1,0 +1,102 @@
+<div class="row">
+	<div class="col-md-6">
+		<fieldset>
+			<legend>Datos personales:</legend>
+			<form class="form">
+				<div class="row">
+					<div class="form-group">
+						<label class="col-sm-4 control-label">Nombres:</label>
+						<p class="col-sm-8">{{user.name}}</p>
+					</div>					
+				</div>
+				<div class="row">
+					<div class="form-group">
+						<label class="col-sm-4 control-label">Apellidos:</label>
+						<p class="col-sm-8">{{user.lastName}}</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group">
+						<label class="col-sm-4 control-label">Tipo de socio:</label>
+						<p class="col-sm-8">{{user.associationType}}</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group">
+						<label class="col-sm-4 control-label">Tipo de documento:</label>
+						<p class="col-sm-8">{{user.documentType}}</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group">
+						<label class="col-sm-4 control-label">Número de documento:</label>
+						<p class="col-sm-8">{{user.documentNumber}}</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group">
+						<label class="col-sm-4 control-label">Correo:</label>
+						<p class="col-sm-8">{{user.email}}</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group">
+						<label class="col-sm-4 control-label">Teléfono:</label>
+						<p class="col-sm-8">{{user.phoneNumber}}</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group">
+						<label class="col-sm-4 control-label">Dirección:</label>
+						<p class="col-sm-8">{{user.address}}</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group">
+						<label class="col-sm-4 control-label">Municipio/Distrito:</label>
+						<p class="col-sm-8">{{user.municipality}}</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group">
+						<label class="col-sm-4 control-label">Departamento:</label>
+						<p class="col-sm-8">{{user.department}}</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group">
+						<label class="col-sm-4 control-label">Zona:</label>
+						<p class="col-sm-8">{{user.zone}}</p>
+					</div>
+				</div>
+			</form>
+		</fieldset>
+	</div>
+	<div class="col-md-6">
+		<center>
+			<div class="row">
+				<div class="col-md-12">
+					<button class="btn btn-success" ng-click="accept()">Aceptar</button>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-md-12">
+					<button class="btn btn-danger" ng-click="refuse()">Rechazar</button>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-md-12">
+					<button class="btn btn-info" ng-click="user.comment = '.'" ng-if="!user.comment">Comentario</button>
+				</div>
+			</div>
+			<br>
+			<div class="row" ng-show="user.comment">
+				<div class="col-md-12">
+					<textarea ng-model="user.comment" cols="30" rows="10" class="formcontrol"></textarea>
+				</div>
+			</div>
+		</center>
+	</div>
+</div>

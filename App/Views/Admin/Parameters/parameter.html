@@ -1,6 +1,8 @@
 <div class="row">
 	<div class="col-md-2">
-		<button class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> nuevo</button>
+		<a ui-sref="admin.parameters_new">
+			<button class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>nuevo</button>
+		</a>
 	</div>
 	<div class="col-md-10">
 		<div class="input-group">
@@ -21,21 +23,9 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>Ejemplo</td>
-					<td><a href="#"><span class="glyphicon glyphicon-leaf" aria-hidden="true"></span></a></td>
-				</tr>
-				<tr>
-					<td>Ejemplo</td>
-					<td><a href="#"><span class="glyphicon glyphicon-leaf" aria-hidden="true"></span></a></td>
-				</tr>
-				<tr>
-					<td>Ejemplo</td>
-					<td><a href="#"><span class="glyphicon glyphicon-leaf" aria-hidden="true"></span></a></td>
-				</tr>
-				<tr>
-					<td>Ejemplo</td>
-					<td><a href="#"><span class="glyphicon glyphicon-leaf" aria-hidden="true"></span></a></td>
+				<tr ng-repeat="doc in parameters | filter: filtro">
+					<td>{{doc.data.name}}</td>
+					<td><a ui-sref="admin.parameters_modify({nick_parameter:'{{doc.id}}'})"><span class="glyphicon glyphicon-leaf" style="background: #000000" aria-hidden="true"></span></a></td>
 				</tr>
 			</tbody>
 		</table>

@@ -20,113 +20,15 @@
 				</tr>
 			</thead>
 			<tbody>
-			    <tr>
-					<td>Ejemplo</td>
-					<td>Ejemplo</td>
-					<td><a href="#"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
-					<td><span class="label label-primary">Esperando</span></td>
-				</tr>
-				<tr>
-					<td>Ejemplo</td>
-					<td>Ejemplo</td>
-					<td><a href="#"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
-					<td><span class="label label-primary">Esperando</span></td>
-				</tr>
-				<tr>
-					<td>Ejemplo</td>
-					<td>Ejemplo</td>
-					<td><a href="#"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
-					<td><span class="label label-primary">Esperando</span></td>
-				</tr>
-				<tr>
-					<td>Ejemplo</td>
-					<td>Ejemplo</td>
-					<td><a href="#"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
-					<td><span class="label label-primary">Esperando</span></td>
-				</tr>
-				<tr>
-					<td>Ejemplo</td>
-					<td>Ejemplo</td>
-					<td><a href="#"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
-					<td><span class="label label-primary">Esperando</span></td>
-				</tr>
-				<tr>
-					<td>Ejemplo</td>
-					<td>Ejemplo</td>
-					<td><a href="#"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
-					<td><span class="label label-primary">Esperando</span></td>
-				</tr>
-				<tr>
-					<td>Ejemplo</td>
-					<td>Ejemplo</td>
-					<td><a href="#"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
-					<td><span class="label label-primary">Esperando</span></td>
-				</tr>
-				<tr>
-					<td>Ejemplo</td>
-					<td>Ejemplo</td>
-					<td><a href="#"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
-					<td><span class="label label-primary">Esperando</span></td>
-				</tr>
-				<tr>
-					<td>Ejemplo</td>
-					<td>Ejemplo</td>
-					<td><a href="#"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
-					<td><span class="label label-primary">Esperando</span></td>
-				</tr>
-				<tr>
-					<td>Ejemplo</td>
-					<td>Ejemplo</td>
-					<td><a href="#"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
-					<td><span class="label label-primary">Esperando</span></td>
-				</tr>
-				<tr>
-					<td>Ejemplo</td>
-					<td>Ejemplo</td>
-					<td><a href="#"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
-					<td><span class="label label-primary">Esperando</span></td>
-				</tr>
-				<tr>
-					<td>Ejemplo</td>
-					<td>Ejemplo</td>
-					<td><a href="#"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
-					<td><span class="label label-primary">Esperando</span></td>
-				</tr>
-				<tr>
-					<td>Ejemplo</td>
-					<td>Ejemplo</td>
-					<td><a href="#"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
-					<td><span class="label label-primary">Esperando</span></td>
-				</tr>
-				<tr>
-					<td>Ejemplo</td>
-					<td>Ejemplo</td>
-					<td><a href="#"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
-					<td><span class="label label-primary">Esperando</span></td>
-				</tr>
-				<tr>
-					<td>Ejemplo</td>
-					<td>Ejemplo</td>
-					<td><a href="#"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
-					<td><span class="label label-primary">Esperando</span></td>
-				</tr>
-				<tr>
-					<td>Ejemplo</td>
-					<td>Ejemplo</td>
-					<td><a href="#"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
-					<td><span class="label label-success">Aceptado</span></td>
-				</tr>
-				<tr>
-					<td>Ejemplo</td>
-					<td>Ejemplo</td>
-					<td><a href="#"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
-					<td><span class="label label-danger">Rechazado</span></td>
-				</tr>
-				<tr>
-					<td>Ejemplo</td>
-					<td>Ejemplo</td>
-					<td><a href="#"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
-					<td><span class="label label-primary">Esperando</span></td>
+			    <tr ng-repeat="data in docs|filter:filtro">
+					<td>{{data.name}}</td>
+					<td>{{data.email}}</td>
+					<td><a ui-sref="admin.users_info({nick_user:'{{data.documentNumber}}'})"><span class="glyphicon glyphicon-file" style="background: #000000" aria-hidden="true"></span></a></td>
+					<td>
+						<span ng-if="data.active == 'esperando'" class="label label-primary">Esperando</span>
+						<span ng-if="data.active == 'rechazado'" class="label label-warning">Rechazado</span>
+						<span ng-if="data.active == 'aceptado'" class="label label-success">Aceptado</span>
+					</td>
 				</tr>
 			</tbody>
 		</table>

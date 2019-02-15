@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-md-12">
-		<h1 class="text-success"><strong><translate>{{action}} de parámetro</translate></strong></h1>
+		<h1 class="text-success"><strong><translate>Nuevo Parámetro</translate></strong></h1>
 	</div>
 </div>
 <div class="row">
@@ -16,7 +16,7 @@
 	<div class="col-md-6">
 		<div class="form-group">
     		<label for="type"><translate>Nombre del cultivo</translate></label>
-    		<input type="text" ng-model="parameter.name" class="form-control" ng-readonly="action == 'Consulta'">
+    		<input type="text" ng-model="parameter.name" class="form-control">
   		</div>
 	</div>
 </div>
@@ -30,11 +30,11 @@
 			</div>
 			<div class="col-md-2">
 				<label for=""><translate>Min</translate></label>
-				<input type="number" ng-model="parameter.roomTemperature.min" min="0" class="form-control" ng-readonly="action == 'Consulta'">
+				<input type="number" ng-model="parameter.roomTemperature.min" min="0" class="form-control">
 			</div>
 			<div class="col-md-2">
 				<label for=""><translate>Max</translate></label>
-				<input type="number" ng-model="parameter.roomTemperature.max" min="0" class="form-control" ng-readonly="action == 'Consulta'">
+				<input type="number" ng-model="parameter.roomTemperature.max" min="0" class="form-control">
 			</div>
 			<div class="col-md-1"></div>
 		</div>
@@ -46,11 +46,11 @@
 			</div>
 			<div class="col-md-2">
 				<label for=""><translate>Min</translate></label>
-				<input type="number" ng-model="parameter.relativeHumidity.min" min="0" class="form-control" ng-readonly="action == 'Consulta'">
+				<input type="number" ng-model="parameter.relativeHumidity.min" min="0" class="form-control">
 			</div>
 			<div class="col-md-2">
 				<label for=""><translate>Max</translate></label>
-				<input type="number" ng-model="parameter.relativeHumidity.max" min="0" class="form-control" ng-readonly="action == 'Consulta'">
+				<input type="number" ng-model="parameter.relativeHumidity.max" min="0" class="form-control">
 			</div>
 			<div class="col-md-1"></div>
 		</div>
@@ -62,11 +62,11 @@
 			</div>
 			<div class="col-md-2">
 				<label for=""><translate>Min</translate></label>
-				<input type="number" ng-model="parameter.ph.min" step="0.1" min="0" max="14" class="form-control" ng-readonly="action == 'Consulta'">
+				<input type="number" ng-model="parameter.ph.min" step="0.1" min="0" max="14" class="form-control">
 			</div>
 			<div class="col-md-2">
 				<label for=""><translate>Max</translate></label>
-				<input type="number" ng-model="parameter.ph.max" step="0.1" min="0" max="14" class="form-control" ng-readonly="action == 'Consulta'">
+				<input type="number" ng-model="parameter.ph.max" step="0.1" min="0" max="14" class="form-control">
 			</div>
 			<div class="col-md-1"></div>
 		</div>
@@ -78,15 +78,15 @@
 			</div>
 			<div class="col-md-2">
 				<label for=""><translate>Min</translate></label>
-				<input type="number" ng-model="parameter.electroconductivity.min" min="0" class="form-control" ng-readonly="action == 'Consulta'">
+				<input type="number" ng-model="parameter.electroconductivity.min" min="0" class="form-control">
 			</div>
 			<div class="col-md-2">
 				<label for=""><translate>Max</translate></label>
-				<input type="number" ng-model="parameter.electroconductivity.max" min="0" class="form-control" ng-readonly="action == 'Consulta'">
+				<input type="number" ng-model="parameter.electroconductivity.max" min="0" class="form-control">
 			</div>
 			<div class="col-md-1">
 				<label for=""><translate>medida</translate></label>
-				<select ng-model="parameter.electroconductivity.measure" class="form-control" ng-readonly="action == 'Consulta'">
+				<select ng-model="parameter.electroconductivity.measure" class="form-control">
 					<option value="">..</option>
 					<option value="MS">MS</option>
 					<option value="PP MM">PP MM</option>
@@ -101,11 +101,11 @@
 			</div>
 			<div class="col-md-2">
 				<label for=""><translate>Min</translate></label>
-				<input type="number" ng-model="parameter.waterTemperature.min" min="0" class="form-control" ng-readonly="action == 'Consulta'">
+				<input type="number" ng-model="parameter.waterTemperature.min" min="0" class="form-control">
 			</div>
 			<div class="col-md-2">
 				<label for=""><translate>Max</translate></label>
-				<input type="number" ng-model="parameter.waterTemperature.max" min="0" class="form-control" ng-readonly="action == 'Consulta'">
+				<input type="number" ng-model="parameter.waterTemperature.max" min="0" class="form-control">
 			</div>
 			<div class="col-md-1"></div>
 		</div>
@@ -117,19 +117,17 @@
 			</div>
 			<div class="col-md-2">
 				<label for=""><translate>Min</translate></label>
-				<input type="number" ng-model="parameter.dissolvedOxygenInTheWater.min" min="0" class="form-control" ng-readonly="action == 'Consulta'">
+				<input type="number" ng-model="parameter.dissolvedOxygenInTheWater.min" min="0" class="form-control">
 			</div>
 			<div class="col-md-2">
 				<label for=""><translate>Max</translate></label>
-				<input type="number" ng-model="parameter.dissolvedOxygenInTheWater.max" min="0" class="form-control" ng-readonly="action == 'Consulta'">
+				<input type="number" ng-model="parameter.dissolvedOxygenInTheWater.max" min="0" class="form-control">
 			</div>
 			<div class="col-md-1"></div>
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-				<button ng-show="action == 'Consulta'" class="btn btn-success" ng-click="action = 'Modificar'">Modificar</button>
-				<button ng-show="action == 'Modificar'" class="btn btn-danger" ng-click="action = 'Consulta'">Cancelar</button>
-				<button ng-show="action == 'Modificar'" class="btn btn-warning pull-right" ng-click="modify()">Modificar</button>
+				<button class="btn btn-success" ng-click="create()">Aceptar</button>
 			</div>
 		</div>
 </div>

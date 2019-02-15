@@ -27,12 +27,7 @@ app.controller('RegisterController', ['$scope','User',function($scope,User){
         })
         .then((willDelete) => {
           if (willDelete) {
-            swal("La informacion a sido enviada correctamente", {
-              icon: "success",
-            });
             $scope.user.create();
-          } else {
-            swal("De acuerdo, la informacion no fue enviada");
           }
         });
 

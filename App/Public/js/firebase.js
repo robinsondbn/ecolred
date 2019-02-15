@@ -10,4 +10,4 @@
 
   firebase.initializeApp(config);
 
-var database = firebase.database();
+var db = firebase.firestore();

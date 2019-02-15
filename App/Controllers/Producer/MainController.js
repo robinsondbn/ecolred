@@ -1,4 +1,4 @@
-app.controller('MainController', ['$scope','$state','$timeout','User', 'AuthMiddleware',function($scope,$state,$timeout,User,AuthMiddleware){
+app.controller('MainController', ['$scope','$state','$timeout','User','AuthMiddleware','AuthServices',function($scope,$state,$timeout,User,AuthMiddleware,AuthServices){
     
     AuthMiddleware.mainOnly();
     
@@ -45,7 +45,7 @@ app.controller('MainController', ['$scope','$state','$timeout','User', 'AuthMidd
     }
     
     $scope.logout = () => {
-        $scope.user.logout();
+        AuthServices.logout();
     }
     
     $scope.changePasswordFunction = () => {

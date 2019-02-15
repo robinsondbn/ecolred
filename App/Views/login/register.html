@@ -39,7 +39,7 @@
                            <div class="col-md-6">
                              <div class="form-group">
                                 <label for="inputName" class="control-label label-admission"><translate>Número de documento</translate></label>
-                                <input type="number" class="form-control input-admission" id="inputDocumentNumber" placeholder="123456789" ng-model="user.documentNumber" required>
+                                <input type="number" min="0" class="form-control input-admission" id="inputDocumentNumber" ng-model="user.documentNumber" required>
                             </div>
                            </div>
                            <div class="col-md-12">
@@ -96,9 +96,10 @@
                             </div>
                             <div class="col-md-12">
                               <div class="form-group">
-                                <input type="submit" class="btn btn-success btn-login" value="Empezar">
+                                <button class="btn btn-success btn-login" ng-click="register()">Empezar</button>
                               </div>
                             </div>
+                            
                             
 <!--
                             <div class="col-md-12">

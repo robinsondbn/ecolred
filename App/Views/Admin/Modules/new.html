@@ -1,0 +1,37 @@
+<div class="row">
+	<div class="col-md-12">
+		<form class="form">
+			<div class="group-form">
+				<label for="code">Código:</label>
+				<input type="text" class="form-control" required ng-model="module.code" ng-change="changeCode()" id="code">
+				<br>
+				<button class="btn btn-warning pull-right" ng-click="codeVerify()">{{statusCodeText}}</button>
+			</div>
+			<br>
+			<div class="group-form">
+				<label for="user">Usuario:</label>
+				<input type="text" class="form-control" ng-model="module.userId" ng-change="changeUser()">
+				<br>
+				<button class="btn btn-info" ng-click="userSalt()">{{statusUserSalt}}</button>
+				<button class="btn btn-warning pull-right" ng-click="userVerify()">{{statusUserText}}</button>
+			</div>
+			<br>
+			<div class="group-form">
+				<label for="code">Tipo de cultivo:</label>
+				<select class="form-control" ng-model="typeParameter" ng-change="changeTypeParamater()">
+					<option value="">seleccionar</option>
+					<option value="Hydroponia">Hydroponia</option>
+				</select>
+				<br>
+				<select class="form-control" ng-model="module.parameterId">
+					<option ng-repeat="option in parameterOptions" value="{{option.id}}">{{option.data.name}}</option>
+				</select>
+				<br>
+			</div>
+			<br>
+			<div class="group-form">
+				<button class="btn btn-success" ng-click="create()">Aceptar</button>
+			</div>
+		</form>
+	</div>
+</div>
